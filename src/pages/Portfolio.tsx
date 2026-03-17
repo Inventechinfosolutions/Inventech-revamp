@@ -8,14 +8,12 @@ export default function Portfolio() {
   const [caseStudiesVisible, setCaseStudiesVisible] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
   const [metricsVisible, setMetricsVisible] = useState(false);
-  const [trustedVisible, setTrustedVisible] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const caseStudiesRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const metricsRef = useRef<HTMLDivElement>(null);
-  const trustedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setHeroVisible(true);
@@ -78,15 +76,6 @@ export default function Portfolio() {
       }
     );
 
-    const trustedObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setTrustedVisible(true);
-        });
-      },
-      { threshold: 0.01, rootMargin: "0px 0px 150px 0px" }
-    );
-
     if (caseStudiesRef.current) {
       caseStudiesObserver.observe(caseStudiesRef.current);
     }
@@ -99,11 +88,6 @@ export default function Portfolio() {
       metricsObserver.observe(metricsRef.current);
     }
 
-    const trustedEl = trustedRef.current;
-    if (trustedEl) {
-      trustedObserver.observe(trustedEl);
-    }
-
     return () => {
       if (caseStudiesRef.current) {
         caseStudiesObserver.unobserve(caseStudiesRef.current);
@@ -113,9 +97,6 @@ export default function Portfolio() {
       }
       if (metricsRef.current) {
         metricsObserver.unobserve(metricsRef.current);
-      }
-      if (trustedEl) {
-        trustedObserver.unobserve(trustedEl);
       }
     };
   }, []);
@@ -181,7 +162,7 @@ export default function Portfolio() {
           business outcomes.
         </p>
         <div className={`flex justify-center gap-6 mb-0 ${heroVisible ? "portfolio-hero-buttons-visible" : "portfolio-hero-buttons-hidden"}`}>
-          <Link to="/contact" className="inline-block bg-transparent border border-cyan-400/50 text-white px-8 py-4 text-lg font-bold transition-all hover:bg-cyan-400/10 hover:border-cyan-400 hover:scale-105 active:scale-95">
+          <Link to="/contact#contact-form" className="inline-block bg-transparent border border-cyan-400/50 text-white px-8 py-4 text-lg font-bold transition-all hover:bg-cyan-400/10 hover:border-cyan-400 hover:scale-105 active:scale-95">
             Work With Us
           </Link>
         </div>
@@ -278,68 +259,40 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Trusted By (Reused, ensure styling works on transparency) */}
+      {/* Trusted by Leading Organizations - logo carousel only */}
       <section className="py-8">
-        {/* <h2 className="text-center text-xl font-bold text-white mb-4">
-          Trusted by Leading Organizations
-        </h2> */}
         <TrustedBy />
       </section>
 
-      {/* Trusted by Leading Organizations - Testimonials & Clients */}
-      <section ref={trustedRef} className="container mx-auto px-6 py-16 border-t border-white/5">
-        {/* <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-12 ${trustedVisible ? 'trusted-title-visible' : 'trusted-title-hidden'}`}>
-          Trusted by Leading Organizations
-        </h2> */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Testimonials */}
-          <div className="space-y-8">
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.1s' }}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-gradient-to-br from-teal-600 to-cyan-600 flex items-center justify-center shadow-lg shadow-teal-600/20">
-                  <span className="text-white font-bold text-xl">S</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-bold">Sarah Johnson</h4>
-                  <p className="text-teal-400 text-sm">CTO, Government of Karnataka</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed italic">"Their AI-driven solutions transformed our procurement process, making it 40% more efficient while maintaining complete transparency."</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-gradient-to-br from-teal-600 to-cyan-600 flex items-center justify-center shadow-lg shadow-teal-600/20">
-                  <span className="text-white font-bold text-xl">M</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-bold">Michael Chen</h4>
-                  <p className="text-teal-400 text-sm">Director, Innovation & Tech Society</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed italic">"The intelligent automation they built reduced our manual workload by 60% while improving accuracy significantly."</p>
-            </div>
-          </div>
-          
-          {/* Right Side - Client Organizations */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.15s' }}>
-              <h4 className="text-white font-bold mb-2">Government of Karnataka</h4>
-              <p className="text-gray-400 text-sm">Digital Transformation Partner</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.25s' }}>
-              <h4 className="text-white font-bold mb-2">KSDC</h4>
-              <p className="text-gray-400 text-sm">Technology Solutions</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.3s' }}>
-              <h4 className="text-white font-bold mb-2">Innovation & Tech Society</h4>
-              <p className="text-gray-400 text-sm">AI Platform Development</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.35s' }}>
-              <h4 className="text-white font-bold mb-2">Smart Enterprises</h4>
-              <p className="text-gray-400 text-sm">Enterprise Solutions</p>
-            </div>
-          </div>
-        </div>
+      {/* Our PSU Clients */}
+      <section className="container mx-auto px-6 py-8 md:py-10 border-t border-white/5">
+        <h3 className="text-lg md:text-xl font-semibold text-cyan-400 mb-6 text-center uppercase tracking-wide drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]">
+          Our PSU Clients
+        </h3>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto list-none">
+          {[
+            "Department of Collegiate Education, Government of Karnataka",
+            "Department of Telecommunications",
+            "Department of Tourism, Karnataka",
+            "CA.gov",
+            "K-tech",
+            "Advanced Centre for Integrated Water Resources Management, Government of Karnataka",
+            "Department of Youth Empowerment and Sports, Government of Karnataka",
+            "Karnataka School Examination and Assessment Board",
+            "Karnataka State Electronics Development Corporation Limited (KEONICS)",
+            "Karnataka State Audit And Accounts Department, Government of Karnataka",
+          ].map((name, idx) => (
+            <li
+              key={idx}
+              className="group flex items-center gap-4 py-3 pl-5 pr-4 bg-white/5 rounded-r-lg border-l-4 border-cyan-400/80 hover:border-cyan-400 hover:bg-white/8 transition-all"
+            >
+              <span className="shrink-0 w-7 h-7 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400 text-xs font-bold">
+                {idx + 1}
+              </span>
+              <span className="text-gray-300 text-sm">{name}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Awards (Reused) */}

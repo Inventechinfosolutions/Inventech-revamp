@@ -162,9 +162,9 @@ export default function Services() {
     },
     {
       image: "/ksaad-project.png",
-      title: "Startup Synergy Innovation & Problem Resolution Portal",
-      desc: "Advanced threat detection and automated response systems",
-      project: "Enterprise Solution",
+      title: "Startup Synergy: Innovation & Problem Resolution Portal",
+      desc: "AI-powered startup hub enabling collaboration, innovation, and growth across Karnataka's ecosystem.",
+      project: "KITS",
       caseStudyPath: null as string | null,
     },
     {
@@ -397,7 +397,7 @@ export default function Services() {
         <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-16 ${testimonialsVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
           What Our Clients Say
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto justify-items-center">
           {[
             {
               name: "Michael Waso",
@@ -408,11 +408,6 @@ export default function Services() {
               name: "Robert Bieniek",
               role: "CEO, Customized Solutions Inc.",
               quote: "InvenTech has been a trusted partner for over a decade, delivering scalable infrastructure and application solutions with strong technical expertise and a consistent commitment to client success.",
-            },
-            {
-              name: "Emily Rodriguez",
-              role: "VP Innovation, KSAAD",
-              quote: "Working with Inventech was transformative. Their human + AI approach delivered results beyond our expectations.",
             },
           ].map((testimonial, idx) => (
             <div

@@ -526,13 +526,18 @@ export default function Contact() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-4 sm:gap-6 flex-wrap max-w-sm sm:max-w-none mx-auto">
               <Link
-                to="/culture"
-                className="w-full sm:w-auto text-center bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white px-10 py-4 font-bold transition-all shadow-xl shadow-teal-600/20 hover:shadow-teal-600/30 active:scale-95"
-              >
-                Explore Careers
-              </Link>
-              <Link
-                to="/contact"
+                to="/contact#contact-form"
+                onClick={(e) => {
+                  if (location.pathname === "/contact") {
+                    e.preventDefault();
+                    const el = document.getElementById("contact-form");
+                    if (el) {
+                      const headerOffset = 120;
+                      const pos = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                      window.scrollTo({ top: pos, behavior: "smooth" });
+                    }
+                  }
+                }}
                 className="w-full sm:w-auto text-center border border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 text-white px-10 py-4 font-bold transition-all backdrop-blur-md active:scale-95"
               >
                 Partner with Us

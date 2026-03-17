@@ -20,6 +20,16 @@ export default function Portfolio() {
   useEffect(() => {
     setHeroVisible(true);
 
+    const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
+    if (isMobile()) {
+      const t = setTimeout(() => {
+        setCaseStudiesVisible(true);
+      }, 400);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  useEffect(() => {
     const caseStudiesObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,8 +45,8 @@ export default function Portfolio() {
         });
       },
       {
-        threshold: 0.2,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.01,
+        rootMargin: "0px 0px -20px 0px",
       }
     );
 
@@ -116,6 +126,7 @@ export default function Portfolio() {
       desc: "Built an AI-powered platform to centralize procurement, boosting transparency, speed, and innovation in government operations.",
       stats: ["75% Reduction in manual processing"],
       image: "/keonics-project.png",
+      caseStudyPath: "/case-study/keonics",
     },
     {
       title: "Web-Based Human Resource Management System",
@@ -123,6 +134,15 @@ export default function Portfolio() {
       desc: "AI-enabled HR automation boosting accuracy, efficiency, and workforce intelligence.",
       stats: ["60% efficiency boost"],
       image: "/IEBA Workforce Management Hub.png",
+      caseStudyPath: null as string | null,
+    },
+    {
+      title: "BDA - Grievance Management Portal",
+      category: "BDA",
+      desc: "Web-based portal for SOP-based grievance handling with role-based workflows, SLA tracking, and audit trails for transparent citizen services.",
+      stats: ["Faster grievance resolution & full audit trail"],
+      image: "/bda-grievance-portal.png",
+      caseStudyPath: "/case-study/bda",
     },
     {
       title: "KSAAD Audit & Accounts Dashboard",
@@ -130,6 +150,7 @@ export default function Portfolio() {
       desc: "Designed a secure, AI-enabled audit system that simplifies data management and enhances accuracy.",
       stats: ["80% Time reduction"],
       image: "/ksaad-project.png",
+      caseStudyPath: "/case-study/ksaad",
     },
     {
       title: "Startup Synergy: Innovation & Problem Resolution Portal",
@@ -137,15 +158,16 @@ export default function Portfolio() {
       desc: "AI-powered startup hub enabling collaboration, innovation, and growth across Karnataka's ecosystem.",
       stats: ["500+ startups active participation"],
       image: "/KITS Startup–Government Bridge.png",
+      caseStudyPath: null as string | null,
     },
   ];
 
   return (
     <div className="pt-24 pb-12 relative z-10">
-      {/* Hero – full viewport, phrase centered in the middle */}
+      {/* Hero – full viewport on desktop; shorter on mobile so case studies are in reach */}
       <section
         ref={heroRef}
-        className="min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center px-6"
+        className="min-h-[60vh] md:min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center px-6"
       >
         <h1 className={`text-6xl md:text-8xl font-bold text-white mb-6 leading-tight ${heroVisible ? "portfolio-hero-title-visible" : "portfolio-hero-title-hidden"}`}>
           Where Innovation Becomes <br />
@@ -158,7 +180,7 @@ export default function Portfolio() {
           automation, and engineering excellence that drive measurable
           business outcomes.
         </p>
-        <div className={`flex justify-center gap-6 ${heroVisible ? "portfolio-hero-buttons-visible" : "portfolio-hero-buttons-hidden"}`}>
+        <div className={`flex justify-center gap-6 mb-0 ${heroVisible ? "portfolio-hero-buttons-visible" : "portfolio-hero-buttons-hidden"}`}>
           <Link to="/contact" className="inline-block bg-transparent border border-cyan-400/50 text-white px-8 py-4 text-lg font-bold transition-all hover:bg-cyan-400/10 hover:border-cyan-400 hover:scale-105 active:scale-95">
             Work With Us
           </Link>
@@ -166,7 +188,7 @@ export default function Portfolio() {
       </section>
 
       {/* Case Studies Grid */}
-      <section ref={caseStudiesRef} className="container mx-auto px-6 mb-10">
+      <section ref={caseStudiesRef} id="case-studies" className="container mx-auto px-6 pt-10 md:pt-0 mb-10">
         <div className={`text-center mb-8 ${caseStudiesVisible ? "portfolio-section-title-visible" : "portfolio-section-title-hidden"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Smart Case Studies
@@ -177,43 +199,53 @@ export default function Portfolio() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {caseStudies.map((study, idx) => (
-            <div
-              key={`${idx}-${animationKey}`}
-              className={`enhanced-portfolio-card bg-white/3 border border-white/15 overflow-hidden hover:bg-white/8 hover:border-cyan-400/25 transition-all group backdrop-blur-xl relative ${caseStudiesVisible ? "portfolio-card-visible" : "portfolio-card-hidden"
-                }`}
-              style={caseStudiesVisible ? { animationDelay: `${idx * 0.15}s` } : {}}
-            >
-              {/* Animated gradient border on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-sky-500/0 to-teal-500/0 group-hover:from-cyan-500/20 group-hover:via-sky-500/20 group-hover:to-teal-500/20 transition-all duration-500 pointer-events-none z-0"></div>
+          {caseStudies.map((study, idx) => {
+            const cardContent = (
+              <div
+                className={`enhanced-portfolio-card bg-white/3 border border-white/15 overflow-hidden hover:bg-white/8 hover:border-cyan-400/25 transition-all group backdrop-blur-xl relative h-full flex flex-col ${caseStudiesVisible ? "portfolio-card-visible" : "portfolio-card-hidden"
+                  } ${study.caseStudyPath ? "cursor-pointer" : ""}`}
+                style={caseStudiesVisible ? { animationDelay: `${idx * 0.15}s` } : {}}
+              >
+                {/* Animated gradient border on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-sky-500/0 to-teal-500/0 group-hover:from-cyan-500/20 group-hover:via-sky-500/20 group-hover:to-teal-500/20 transition-all duration-500 pointer-events-none z-0"></div>
 
-              <div className="h-64 overflow-hidden relative group/img">
-                {/* Glow effect on image */}
-                <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/0 to-transparent group-hover/img:from-cyan-500/10 transition-all duration-500 z-10 pointer-events-none"></div>
-                <img
-                  src={study.image}
-                  alt={study.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 relative z-0"
-                />
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 text-xs font-bold text-cyan-300 border border-cyan-400/30 shadow-lg shadow-cyan-400/20 z-20 group-hover:scale-110 transition-transform">
-                  {study.category}
+                <div className="h-64 overflow-hidden relative group/img">
+                  {/* Glow effect on image */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/0 to-transparent group-hover/img:from-cyan-500/10 transition-all duration-500 z-10 pointer-events-none"></div>
+                  <img
+                    src={study.image}
+                    alt={study.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 relative z-0"
+                  />
+                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 text-xs font-bold text-cyan-300 border border-cyan-400/30 shadow-lg shadow-cyan-400/20 z-20 group-hover:scale-110 transition-transform">
+                    {study.category}
+                  </div>
+                </div>
+                <div className="p-8 relative z-10 flex flex-col flex-grow">
+                  <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:text-cyan-300 transition-colors duration-300">
+                    {study.title}
+                  </h3>
+                  <p className="text-gray-300 mb-6 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                    {study.desc}
+                  </p>
+                  <div className="border-t border-white/10 pt-6 mt-auto">
+                    <span className="text-xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300">
+                      {study.stats[0]}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="p-8 relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:text-cyan-300 transition-colors duration-300">
-                  {study.title}
-                </h3>
-                <p className="text-gray-300 mb-6 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                  {study.desc}
-                </p>
-                <div className="border-t border-white/10 pt-6">
-                  <span className="text-xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300">
-                    {study.stats[0]}
-                  </span>
-                </div>
+            );
+            return study.caseStudyPath ? (
+              <Link key={`${idx}-${animationKey}`} to={study.caseStudyPath} className="block h-full">
+                {cardContent}
+              </Link>
+            ) : (
+              <div key={`${idx}-${animationKey}`} className="block h-full">
+                {cardContent}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

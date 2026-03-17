@@ -32,6 +32,7 @@ import CulturePage from "./pages/Culture";
 import ContactPage from "./pages/Contact";
 import CaseStudyKeonextPage from "./pages/CaseStudyKeonext";
 import CaseStudyBdaPage from "./pages/CaseStudyBda";
+import CaseStudyKsaadPage from "./pages/CaseStudyKsaad";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -118,13 +119,13 @@ function ContactFormSection() {
   return (
     <section
       ref={sectionRef}
-      className={`pt-6 pb-20 md:pt-8 md:pb-28 ${
+      className={`pt-4 pb-12 md:pt-8 md:pb-28 ${
         isVisible ? "animate-slide-up-in" : "opacity-0 translate-y-12"
       }`}
     >
       <div className="container mx-auto px-6 max-w-4xl">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 md:mb-4">
             Let's Build the Future Together
           </h2>
           <p className="text-gray-300 text-lg">
@@ -256,24 +257,27 @@ function App() {
           <div className="absolute inset-0 bg-teal-400/5 mix-blend-overlay z-[2]"></div>
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
-          <PageTransition>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/consulting" element={<ConsultationPage />} />
-              <Route path="/portfolio" element={<PortfolioPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/blog/article/:id" element={<BlogArticlePage />} />
-              <Route path="/about" element={<AboutUsPage />} />
-              <Route path="/ceo-message" element={<CEOMessagePage />} />
-              <Route path="/culture" element={<CulturePage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/case-study/keonics" element={<CaseStudyKeonextPage />} />
-              <Route path="/case-study/bda" element={<CaseStudyBdaPage />} />
-            </Routes>
-          </PageTransition>
+          <main className="flex-1">
+            <PageTransition>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/consulting" element={<ConsultationPage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/article/:id" element={<BlogArticlePage />} />
+                <Route path="/about" element={<AboutUsPage />} />
+                <Route path="/ceo-message" element={<CEOMessagePage />} />
+                <Route path="/culture" element={<CulturePage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/case-study/keonics" element={<CaseStudyKeonextPage />} />
+                <Route path="/case-study/bda" element={<CaseStudyBdaPage />} />
+                <Route path="/case-study/ksaad" element={<CaseStudyKsaadPage />} />
+              </Routes>
+            </PageTransition>
+          </main>
           <Footer />
         </div>
       </div>

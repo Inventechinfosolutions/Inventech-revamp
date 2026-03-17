@@ -55,13 +55,13 @@ export default function BlogArticle() {
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-gray-300 w-full">
               <div className="flex items-center gap-3 flex-shrink-0">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-teal-500/30 to-cyan-500/30 border border-teal-400/50 overflow-hidden flex-shrink-0 ring-2 ring-white/10">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-teal-500/30 to-cyan-500/30 border border-teal-400/50 overflow-hidden flex-shrink-0 aspect-square ring-2 ring-white/10">
                   <img
                     src={article.authorImage ?? "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100"}
                     alt={article.author}
                     width={56}
                     height={56}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-center"
                     loading="eager"
                     decoding="async"
                   />

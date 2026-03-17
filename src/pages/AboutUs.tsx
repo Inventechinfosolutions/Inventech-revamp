@@ -1,6 +1,6 @@
 import { Rocket, Rocket as InnovationFirst, Eye as Transparency, Users as Collaboration, ShieldCheck as EthicalAI, ArrowRight, Eye, Settings, Building2, Lightbulb } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function AboutUs() {
   const [heroVisible, setHeroVisible] = useState(true);
@@ -15,6 +15,7 @@ export default function AboutUs() {
   const [ctaVisible, setCtaVisible] = useState(false);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
+  const location = useLocation();
 
   const testimonials = [
     {
@@ -120,6 +121,18 @@ export default function AboutUs() {
     };
   }, []);
 
+  // Scroll to leaders section when navigating with hash (e.g. /about#meet-our-leaders)
+  useEffect(() => {
+    if (location.hash === "#meet-our-leaders") {
+      const el = document.getElementById("meet-our-leaders");
+      if (el) {
+        const headerOffset = 100;
+        const pos = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        setTimeout(() => window.scrollTo({ top: pos, behavior: "smooth" }), 100);
+      }
+    }
+  }, [location.hash]);
+
   // Count-up animation for stats: random delay per stat, then animate to target and stop
   const statTargets = [15, 100, 25, 10];
   useEffect(() => {
@@ -170,7 +183,21 @@ export default function AboutUs() {
               <Link to="/contact#global-location" className="inline-block bg-white/5 border border-cyan-400/50 text-white px-8 py-4 font-bold hover:bg-cyan-400/10 hover:border-cyan-400 transition-all backdrop-blur-md active:scale-95 text-center">
                 View Our Location
               </Link>
-              <Link to="/portfolio" className="inline-block bg-white/5 border border-cyan-400/50 text-white px-8 py-4 font-bold hover:bg-cyan-400/10 hover:border-cyan-400 transition-all backdrop-blur-md active:scale-95 text-center">
+              <Link
+                to="/about#meet-our-leaders"
+                onClick={(e) => {
+                  if (location.pathname === "/about") {
+                    e.preventDefault();
+                    const el = document.getElementById("meet-our-leaders");
+                    if (el) {
+                      const headerOffset = 100;
+                      const pos = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                      window.scrollTo({ top: pos, behavior: "smooth" });
+                    }
+                  }
+                }}
+                className="inline-block bg-white/5 border border-cyan-400/50 text-white px-8 py-4 font-bold hover:bg-cyan-400/10 hover:border-cyan-400 transition-all backdrop-blur-md active:scale-95 text-center"
+              >
                 Meet our Leaders
               </Link>
             </div>
@@ -366,7 +393,7 @@ export default function AboutUs() {
       </section>
 
       {/* CEO Message - tablet: 2x2 grid for feature cards, contained layout */}
-      <section ref={ceoRef} className="container mx-auto px-4 sm:px-6 mb-32">
+      <section id="meet-our-leaders" ref={ceoRef} className="container mx-auto px-4 sm:px-6 mb-32 scroll-mt-24">
         <div className={`text-center mb-10 md:mb-12 ${ceoVisible ? "about-ceo-title-visible" : "about-ceo-title-hidden"}`}>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
             Driven by Expertise. United by Innovation.

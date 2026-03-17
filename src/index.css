@@ -8,11 +8,11 @@
   }
 }
 
-/* Page transition animation */
+/* Page transition animation – avoid full opacity 0 so content is never stuck blank */
 @keyframes page-transition {
   0% {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 0.6;
+    transform: translateY(16px);
   }
   100% {
     opacity: 1;
@@ -21,7 +21,15 @@
 }
 
 .animate-page-transition {
-  animation: page-transition 0.4s ease-out forwards;
+  animation: page-transition 0.35s ease-out forwards;
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-transition {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 /* Header logo: transparent background, exact look as brand image (no white box) */

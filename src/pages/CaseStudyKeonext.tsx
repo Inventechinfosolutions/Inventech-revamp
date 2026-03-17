@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Clock } from "lucide-react";
 
 export default function CaseStudyKeonext() {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen pt-28 pb-20 relative z-10">
+    <div className="min-h-screen w-full pt-28 pb-20 relative z-10">
       {/* Background – match blog article style */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[#020d0f]" />
@@ -21,13 +23,14 @@ export default function CaseStudyKeonext() {
       </div>
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
-        <Link
-          to="/#projects"
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
           className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold mb-10 transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to Projects
-        </Link>
+          Back
+        </button>
 
         <article className="bg-white/[0.03] border border-white/10 backdrop-blur-xl overflow-hidden shadow-2xl" style={{ borderRadius: 0 }}>
           {/* Hero image first – blog structure */}
@@ -197,14 +200,15 @@ export default function CaseStudyKeonext() {
         </article>
 
         <div className="mt-12 flex flex-wrap gap-4">
-          <Link
-            to="/#projects"
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
             className="bg-white/5 border border-white/20 text-white px-6 py-3 font-semibold hover:bg-white/10 transition-all inline-flex items-center gap-2"
             style={{ borderRadius: 0 }}
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Projects
-          </Link>
+            Back
+          </button>
           <Link
             to="/portfolio"
             className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white px-6 py-3 font-semibold transition-all shadow-lg shadow-teal-600/20"

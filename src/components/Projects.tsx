@@ -17,7 +17,7 @@ const projects = [
       "Advanced financial management system with real-time auditing, compliance tracking, and comprehensive reporting.",
     image: "/ksaad-project.png" ,
     tag: "FinTech",
-    caseStudyPath: null,
+    caseStudyPath: "/case-study/ksaad",
   },
   {
     title: "IEBA Workforce Management Hub",
@@ -87,9 +87,9 @@ export default function Projects() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-10 md:py-14 px-6 container mx-auto" id="projects">
-      <div className="text-center mb-10 animate-fade-in-up">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+    <section ref={sectionRef} className="py-8 md:py-14 px-6 container mx-auto" id="projects">
+      <div className="text-center mb-6 md:mb-10 animate-fade-in-up">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-2 md:mb-4">
           Our Impactful Projects
         </h2>
         <p className="text-gray-400 text-lg">

@@ -44,8 +44,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-navy-900/90 backdrop-blur-md py-0.5" : "bg-transparent py-1"}`}
     >
-      <div className="container mx-auto max-w-[1400px] px-8 flex items-center justify-between"
-        style={{ marginTop: '25px', marginBottom: '10px' }}>
+      <div className="container mx-auto max-w-[1400px] px-8 flex items-center justify-between mt-0 mb-2 md:mt-[25px] md:mb-[10px]">
 
         {/* Logo - Zoomed and Cropped to show only text and hide watermark */}
         <Link

@@ -39,15 +39,15 @@ export default function CEOMessage() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 container mx-auto px-6">
-      <div className="bg-gradient-to-r from-white/5 to-transparent p-12 md:p-20 border border-cyan-400/25 relative overflow-hidden backdrop-blur-xl home-ceo-card hover:border-cyan-400/50 transition-colors">
+    <section ref={sectionRef} className="py-8 md:py-16 container mx-auto px-6">
+      <div className="bg-gradient-to-r from-white/5 to-transparent p-6 md:p-20 border border-cyan-400/25 relative overflow-hidden backdrop-blur-xl home-ceo-card hover:border-cyan-400/50 transition-colors">
         {/* Enhanced decorative blur */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/20 blur-[100px] rounded-full -z-10 animate-pulse-slow"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/15 blur-[100px] rounded-full -z-10 animate-pulse-slow-delayed"></div>
 
         {/* Heading: centered on desktop, left-aligned on mobile for readability */}
-        <div className={`text-left md:text-center mb-12 ${isVisible ? "ceo-text-visible" : "ceo-text-hidden"}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+        <div className={`text-left md:text-center mb-6 md:mb-12 ${isVisible ? "ceo-text-visible" : "ceo-text-hidden"}`}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-8">
             A Message from Our CEO
           </h2>
           {/* Quote box */}

@@ -22,10 +22,10 @@ export default function Awards() {
   }, []);
 
   return (
-    <section ref={ref} className="container mx-auto px-6 py-20 text-center">
-      <h2 className="text-3xl font-bold mb-16">Awards & Recognitions</h2>
+    <section ref={ref} className="container mx-auto px-6 py-8 md:py-20 text-center">
+      <h2 className="text-3xl font-bold mb-8 md:mb-16">Awards & Recognitions</h2>
 
-      <div className="flex flex-wrap justify-center gap-12">
+      <div className="flex flex-wrap justify-center gap-6 md:gap-12">
         {[
           { Icon: Medal, text: "Government-approved IT Systems Partner" },
           { Icon: Award, text: "Digital Innovation Recognition" },
@@ -34,7 +34,7 @@ export default function Awards() {
         ].map(({ Icon, text }, i) => (
           <div
             key={i}
-            className={`flex flex-col items-center gap-4 bg-white/5 border border-cyan-400/25 p-8 w-48 hover:bg-white/10 hover:border-cyan-400/50 transition-all duration-700 transform group ${isVisible
+            className={`flex flex-col items-center gap-3 md:gap-4 bg-white/5 border border-cyan-400/25 p-5 md:p-8 w-48 hover:bg-white/10 hover:border-cyan-400/50 transition-all duration-700 transform group ${isVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-20"
               }`}

@@ -72,9 +72,9 @@ export default function ServicesWeProvide() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 container mx-auto px-6">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+    <section ref={sectionRef} className="py-8 md:py-16 container mx-auto px-6">
+      <div className="text-center mb-6 md:mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-4">
           Services We Provide
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">

@@ -8,6 +8,7 @@ const CATEGORY_BUTTONS = [
   { label: "UX & Design", category: "UX & Design" },
   { label: "Frontend & React.js", category: "Frontend & React.js" },
   { label: "Frontend & AI", category: "AI & Frontend" },
+  { label: "Blockchain & Backend", category: "Blockchain & Backend" },
   { label: "Talent & Workforce Innovation", category: "Talent & Workforce Innovation" },
   { label: "Business & Digital Strategy", category: "Business & Digital Strategy" },
 ];
@@ -114,28 +115,26 @@ export default function Blog() {
     ? articles.filter((a) => matchSearch(a, searchQuery))
     : articles;
 
-  const featuredArticle = filteredBySearch.find((a) => a.id === 7) ?? filteredBySearch[0];
-  const sushmithaArticle = filteredBySearch.find((a) => a.id === 11); // Sushmitha CR - AI-Powered APIs (left card)
-  const uxArticle = filteredBySearch.find((a) => a.id === 8);
-  const realTimeAIArticle = filteredBySearch.find((a) => a.id === 9);
-  const aiSmarterUIArticle = filteredBySearch.find((a) => a.id === 10);
-  const restArticles = filteredBySearch.filter((a) => a.id !== 7 && a.id !== 8 && a.id !== 9 && a.id !== 10 && a.id !== 11);
-  const gridWithoutSushmitha = uxArticle
-    ? realTimeAIArticle
-      ? aiSmarterUIArticle
-        ? [uxArticle, realTimeAIArticle, aiSmarterUIArticle, ...restArticles] // Darshini (9) then Manveeth (10)
-        : [uxArticle, realTimeAIArticle, ...restArticles]
-      : [uxArticle, ...filteredBySearch.filter((a) => a.id !== 7 && a.id !== 8)]
-    : filteredBySearch.filter((a) => a.id !== 7 && a.id !== 11);
-  const gridArticlesRaw = sushmithaArticle ? [sushmithaArticle, ...gridWithoutSushmitha] : gridWithoutSushmitha;
-  const gridArticles = gridArticlesRaw.filter((a): a is NonNullable<typeof a> => a != null);
+  // Featured card: Vadiraj Karanam (Blockchain). Grid order: Shiva → Bankey → Sushmitha → Darshini → Manveeth → Prajwal → rest
+  const vadirajArticle = filteredBySearch.find((a) => a.id === 12);
+  const shivaArticle = filteredBySearch.find((a) => a.id === 7);
+  const bankeyArticle = filteredBySearch.find((a) => a.id === 8);
+  const sushmithaArticle = filteredBySearch.find((a) => a.id === 11);
+  const darshiniArticle = filteredBySearch.find((a) => a.id === 9);
+  const manveethArticle = filteredBySearch.find((a) => a.id === 10);
+  const prajwalArticle = filteredBySearch.find((a) => a.id === 13);
+  const featuredArticle = vadirajArticle ?? filteredBySearch.find((a) => a.id === 7) ?? filteredBySearch[0];
+  const restArticles = filteredBySearch.filter((a) => a.id !== 7 && a.id !== 8 && a.id !== 9 && a.id !== 10 && a.id !== 11 && a.id !== 12 && a.id !== 13);
+  const orderedGrid = [shivaArticle, bankeyArticle, sushmithaArticle, darshiniArticle, manveethArticle, prajwalArticle].filter((a): a is NonNullable<typeof a> => a != null);
+  const gridArticles = [...orderedGrid, ...restArticles];
 
   const displayedArticles = gridArticles.slice(0, visibleCount);
   const hasMore = visibleCount < gridArticles.length;
 
-  // Recommended Reads: Manveeth, Darshini, Bankey (Bhakey), Shiva Reddy cards (ids 10, 9, 8, 7)
+  // Recommended Reads: Manveeth, Prajwal, Darshini, Bankey (Bhakey), Shiva Reddy cards (ids 10, 13, 9, 8, 7)
   const recommendedReads = [
     articles.find((a) => a.id === 10), // Manveeth S K - AI Smarter UI
+    articles.find((a) => a.id === 13), // Prajwal - AI-Driven Business Analysis in Government
     articles.find((a) => a.id === 9),  // Darshini G B - Real-Time AI
     articles.find((a) => a.id === 8), // Bankey Bihari - UX Design
     articles.find((a) => a.id === 7), // Shiva Reddy - GovTech
@@ -235,7 +234,7 @@ export default function Blog() {
             </div>
           ) : (
             <>
-          {/* Featured Article - GovTech */}
+          {/* Featured Article */}
           <article
             ref={(el) => {
               if (el) categoryCardRefs.current[featuredArticle.category] = el;
@@ -265,19 +264,19 @@ export default function Blog() {
                 </p>
               </div>
               <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/5">
-                <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-teal-500/20 to-cyan-500/20 border border-teal-500/30 overflow-hidden flex-shrink-0 ring-2 ring-white/5">
+                <div className="flex items-center gap-3 min-h-0">
+                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-teal-500/20 to-cyan-500/20 border border-teal-500/30 overflow-hidden flex-shrink-0 aspect-square ring-2 ring-white/5">
                     <img
                       src={featuredArticle.authorImage ?? "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100"}
                       alt={featuredArticle.author}
                       width={56}
                       height={56}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover object-center"
                       loading="eager"
                       decoding="async"
                     />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col justify-center min-w-0">
                     <span className="text-xs font-semibold text-white">
                       {featuredArticle.author}
                     </span>
@@ -291,7 +290,7 @@ export default function Blog() {
                     )}
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
+                <div className="flex flex-col items-end flex-shrink-0">
                   <span className="text-xs text-cyan-400 font-semibold mb-1">
                     {featuredArticle.readTime}
                   </span>
@@ -349,18 +348,18 @@ export default function Blog() {
                         {article.excerpt}
                       </p>
                     </div>
-                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500/20 to-cyan-500/20 border border-teal-500/30 overflow-hidden flex-shrink-0">
+                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/5 gap-3">
+                      <div className="flex items-center gap-3 min-w-0 flex-1">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500/20 to-cyan-500/20 border border-teal-500/30 overflow-hidden flex-shrink-0 aspect-square">
                           <img
                             src={article.authorImage ?? "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100"}
                             alt={article.author}
-                            width={40}
-                            height={40}
-                            className="w-full h-full object-cover object-top"
+                            width={48}
+                            height={48}
+                            className="w-full h-full object-cover object-center"
                           />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col justify-center min-w-0">
                           <span className="text-xs font-semibold text-white">{article.author}</span>
                           <span className="text-[10px] text-gray-500 font-medium">{article.date}</span>
                           {article.authorRole && (
@@ -370,12 +369,12 @@ export default function Blog() {
                           )}
                         </div>
                       </div>
-                      <div className="flex flex-col items-end">
+                      <div className="flex flex-col items-end flex-shrink-0">
                         <span className="text-xs text-cyan-400 font-semibold mb-1">{article.readTime}</span>
                         <span className="text-[10px] text-gray-500 font-medium">{article.category}</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 mt-auto">
+                    <div className="flex items-center gap-2 mt-auto pt-1">
                       <Link
                         to={`/blog/article/${article.id}`}
                         className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1 group/btn"
@@ -423,7 +422,7 @@ export default function Blog() {
             </div>
           </div>
 
-          {/* Recommended Reads - Manveeth, Darshini, Bankey (Bhakey), Shiva Reddy */}
+          {/* Recommended Reads - Manveeth, Prajwal, Darshini, Bankey (Bhakey), Shiva Reddy */}
           <div className="bg-white/3 border border-white/5 ring-1 ring-emerald-400/20 rounded-lg p-6 backdrop-blur-xl">
             <h3 className="text-lg font-bold text-white mb-6">
               Recommended Reads

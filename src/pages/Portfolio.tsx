@@ -8,18 +8,26 @@ export default function Portfolio() {
   const [caseStudiesVisible, setCaseStudiesVisible] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
   const [metricsVisible, setMetricsVisible] = useState(false);
-  const [trustedVisible, setTrustedVisible] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const caseStudiesRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const metricsRef = useRef<HTMLDivElement>(null);
-  const trustedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setHeroVisible(true);
 
+    const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
+    if (isMobile()) {
+      const t = setTimeout(() => {
+        setCaseStudiesVisible(true);
+      }, 400);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  useEffect(() => {
     const caseStudiesObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,8 +43,8 @@ export default function Portfolio() {
         });
       },
       {
-        threshold: 0.2,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.01,
+        rootMargin: "0px 0px -20px 0px",
       }
     );
 
@@ -68,15 +76,6 @@ export default function Portfolio() {
       }
     );
 
-    const trustedObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setTrustedVisible(true);
-        });
-      },
-      { threshold: 0.01, rootMargin: "0px 0px 150px 0px" }
-    );
-
     if (caseStudiesRef.current) {
       caseStudiesObserver.observe(caseStudiesRef.current);
     }
@@ -89,11 +88,6 @@ export default function Portfolio() {
       metricsObserver.observe(metricsRef.current);
     }
 
-    const trustedEl = trustedRef.current;
-    if (trustedEl) {
-      trustedObserver.observe(trustedEl);
-    }
-
     return () => {
       if (caseStudiesRef.current) {
         caseStudiesObserver.unobserve(caseStudiesRef.current);
@@ -104,9 +98,6 @@ export default function Portfolio() {
       if (metricsRef.current) {
         metricsObserver.unobserve(metricsRef.current);
       }
-      if (trustedEl) {
-        trustedObserver.unobserve(trustedEl);
-      }
     };
   }, []);
   const caseStudies = [
@@ -116,13 +107,23 @@ export default function Portfolio() {
       desc: "Built an AI-powered platform to centralize procurement, boosting transparency, speed, and innovation in government operations.",
       stats: ["75% Reduction in manual processing"],
       image: "/keonics-project.png",
+      caseStudyPath: "/case-study/keonics",
     },
     {
       title: "Web-Based Human Resource Management System",
       category: "IEBA",
       desc: "AI-enabled HR automation boosting accuracy, efficiency, and workforce intelligence.",
       stats: ["60% efficiency boost"],
-      image: "/IEBA Workforce Management Hub.png",
+      image: "/ieba-workforce-management-hub-card.png",
+      caseStudyPath: null as string | null,
+    },
+    {
+      title: "BDA - Grievance Management Portal",
+      category: "BDA",
+      desc: "Web-based portal for SOP-based grievance handling with role-based workflows, SLA tracking, and audit trails for transparent citizen services.",
+      stats: ["Faster grievance resolution & full audit trail"],
+      image: "/bda-grievance-portal.png",
+      caseStudyPath: "/case-study/bda",
     },
     {
       title: "KSAAD Audit & Accounts Dashboard",
@@ -130,6 +131,8 @@ export default function Portfolio() {
       desc: "Designed a secure, AI-enabled audit system that simplifies data management and enhances accuracy.",
       stats: ["80% Time reduction"],
       image: "/ksaad-project.png",
+      caseStudyPath: "/case-study/ksaad",
+      imagePosition: "center 35%",
     },
     {
       title: "Startup Synergy: Innovation & Problem Resolution Portal",
@@ -137,15 +140,16 @@ export default function Portfolio() {
       desc: "AI-powered startup hub enabling collaboration, innovation, and growth across Karnataka's ecosystem.",
       stats: ["500+ startups active participation"],
       image: "/KITS Startup–Government Bridge.png",
+      caseStudyPath: null as string | null,
     },
   ];
 
   return (
     <div className="pt-24 pb-12 relative z-10">
-      {/* Hero – full viewport, phrase centered in the middle */}
+      {/* Hero – full viewport on desktop; shorter on mobile so case studies are in reach */}
       <section
         ref={heroRef}
-        className="min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center px-6"
+        className="min-h-[60vh] md:min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center px-6"
       >
         <h1 className={`text-6xl md:text-8xl font-bold text-white mb-6 leading-tight ${heroVisible ? "portfolio-hero-title-visible" : "portfolio-hero-title-hidden"}`}>
           Where Innovation Becomes <br />
@@ -158,15 +162,15 @@ export default function Portfolio() {
           automation, and engineering excellence that drive measurable
           business outcomes.
         </p>
-        <div className={`flex justify-center gap-6 ${heroVisible ? "portfolio-hero-buttons-visible" : "portfolio-hero-buttons-hidden"}`}>
-          <Link to="/contact" className="inline-block bg-transparent border border-cyan-400/50 text-white px-8 py-4 text-lg font-bold transition-all hover:bg-cyan-400/10 hover:border-cyan-400 hover:scale-105 active:scale-95">
+        <div className={`flex justify-center gap-6 mb-0 ${heroVisible ? "portfolio-hero-buttons-visible" : "portfolio-hero-buttons-hidden"}`}>
+          <Link to="/contact#contact-form" className="inline-block bg-transparent border border-cyan-400/50 text-white px-8 py-4 text-lg font-bold transition-all hover:bg-cyan-400/10 hover:border-cyan-400 hover:scale-105 active:scale-95">
             Work With Us
           </Link>
         </div>
       </section>
 
       {/* Case Studies Grid */}
-      <section ref={caseStudiesRef} className="container mx-auto px-6 mb-10">
+      <section ref={caseStudiesRef} id="case-studies" className="container mx-auto px-6 pt-10 md:pt-0 mb-10">
         <div className={`text-center mb-8 ${caseStudiesVisible ? "portfolio-section-title-visible" : "portfolio-section-title-hidden"}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Smart Case Studies
@@ -177,43 +181,54 @@ export default function Portfolio() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {caseStudies.map((study, idx) => (
-            <div
-              key={`${idx}-${animationKey}`}
-              className={`enhanced-portfolio-card bg-white/3 border border-white/15 overflow-hidden hover:bg-white/8 hover:border-cyan-400/25 transition-all group backdrop-blur-xl relative ${caseStudiesVisible ? "portfolio-card-visible" : "portfolio-card-hidden"
-                }`}
-              style={caseStudiesVisible ? { animationDelay: `${idx * 0.15}s` } : {}}
-            >
-              {/* Animated gradient border on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-sky-500/0 to-teal-500/0 group-hover:from-cyan-500/20 group-hover:via-sky-500/20 group-hover:to-teal-500/20 transition-all duration-500 pointer-events-none z-0"></div>
+          {caseStudies.map((study, idx) => {
+            const cardContent = (
+              <div
+                className={`enhanced-portfolio-card bg-white/3 border border-white/15 overflow-hidden hover:bg-white/8 hover:border-cyan-400/25 transition-all group backdrop-blur-xl relative h-full flex flex-col ${caseStudiesVisible ? "portfolio-card-visible" : "portfolio-card-hidden"
+                  } ${study.caseStudyPath ? "cursor-pointer" : ""}`}
+                style={caseStudiesVisible ? { animationDelay: `${idx * 0.15}s` } : {}}
+              >
+                {/* Animated gradient border on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-sky-500/0 to-teal-500/0 group-hover:from-cyan-500/20 group-hover:via-sky-500/20 group-hover:to-teal-500/20 transition-all duration-500 pointer-events-none z-0"></div>
 
-              <div className="h-64 overflow-hidden relative group/img">
-                {/* Glow effect on image */}
-                <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/0 to-transparent group-hover/img:from-cyan-500/10 transition-all duration-500 z-10 pointer-events-none"></div>
-                <img
-                  src={study.image}
-                  alt={study.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 relative z-0"
-                />
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 text-xs font-bold text-cyan-300 border border-cyan-400/30 shadow-lg shadow-cyan-400/20 z-20 group-hover:scale-110 transition-transform">
-                  {study.category}
+                <div className="h-64 overflow-hidden relative group/img">
+                  {/* Glow effect on image */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/0 to-transparent group-hover/img:from-cyan-500/10 transition-all duration-500 z-10 pointer-events-none"></div>
+                  <img
+                    src={study.image}
+                    alt={study.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 relative z-0"
+                    style={{ objectPosition: (study as { imagePosition?: string }).imagePosition ?? "center center" }}
+                  />
+                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 text-xs font-bold text-cyan-300 border border-cyan-400/30 shadow-lg shadow-cyan-400/20 z-20 group-hover:scale-110 transition-transform">
+                    {study.category}
+                  </div>
+                </div>
+                <div className="p-8 relative z-10 flex flex-col flex-grow">
+                  <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:text-cyan-300 transition-colors duration-300">
+                    {study.title}
+                  </h3>
+                  <p className="text-gray-300 mb-6 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                    {study.desc}
+                  </p>
+                  <div className="border-t border-white/10 pt-6 mt-auto">
+                    <span className="text-xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300">
+                      {study.stats[0]}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="p-8 relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:text-cyan-300 transition-colors duration-300">
-                  {study.title}
-                </h3>
-                <p className="text-gray-300 mb-6 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                  {study.desc}
-                </p>
-                <div className="border-t border-white/10 pt-6">
-                  <span className="text-xl font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300">
-                    {study.stats[0]}
-                  </span>
-                </div>
+            );
+            return study.caseStudyPath ? (
+              <Link key={`${idx}-${animationKey}`} to={study.caseStudyPath} className="block h-full">
+                {cardContent}
+              </Link>
+            ) : (
+              <div key={`${idx}-${animationKey}`} className="block h-full">
+                {cardContent}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -246,68 +261,40 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Trusted By (Reused, ensure styling works on transparency) */}
+      {/* Trusted by Leading Organizations - logo carousel only */}
       <section className="py-8">
-        {/* <h2 className="text-center text-xl font-bold text-white mb-4">
-          Trusted by Leading Organizations
-        </h2> */}
         <TrustedBy />
       </section>
 
-      {/* Trusted by Leading Organizations - Testimonials & Clients */}
-      <section ref={trustedRef} className="container mx-auto px-6 py-16 border-t border-white/5">
-        {/* <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-12 ${trustedVisible ? 'trusted-title-visible' : 'trusted-title-hidden'}`}>
-          Trusted by Leading Organizations
-        </h2> */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Testimonials */}
-          <div className="space-y-8">
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.1s' }}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-gradient-to-br from-teal-600 to-cyan-600 flex items-center justify-center shadow-lg shadow-teal-600/20">
-                  <span className="text-white font-bold text-xl">S</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-bold">Sarah Johnson</h4>
-                  <p className="text-teal-400 text-sm">CTO, Government of Karnataka</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed italic">"Their AI-driven solutions transformed our procurement process, making it 40% more efficient while maintaining complete transparency."</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-gradient-to-br from-teal-600 to-cyan-600 flex items-center justify-center shadow-lg shadow-teal-600/20">
-                  <span className="text-white font-bold text-xl">M</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-bold">Michael Chen</h4>
-                  <p className="text-teal-400 text-sm">Director, Innovation & Tech Society</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed italic">"The intelligent automation they built reduced our manual workload by 60% while improving accuracy significantly."</p>
-            </div>
-          </div>
-          
-          {/* Right Side - Client Organizations */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.15s' }}>
-              <h4 className="text-white font-bold mb-2">Government of Karnataka</h4>
-              <p className="text-gray-400 text-sm">Digital Transformation Partner</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.25s' }}>
-              <h4 className="text-white font-bold mb-2">KSDC</h4>
-              <p className="text-gray-400 text-sm">Technology Solutions</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.3s' }}>
-              <h4 className="text-white font-bold mb-2">Innovation & Tech Society</h4>
-              <p className="text-gray-400 text-sm">AI Platform Development</p>
-            </div>
-            <div className={`bg-gradient-to-br from-white/5 to-transparent border border-white/15 p-6 hover:border-cyan-400/25 hover:bg-white/8 text-center hover:scale-[1.02] ${trustedVisible ? 'trusted-card-visible' : 'trusted-card-hidden'}`} style={{ animationDelay: '0.35s' }}>
-              <h4 className="text-white font-bold mb-2">Smart Enterprises</h4>
-              <p className="text-gray-400 text-sm">Enterprise Solutions</p>
-            </div>
-          </div>
-        </div>
+      {/* Our PSU Clients */}
+      <section className="container mx-auto px-6 py-8 md:py-10 border-t border-white/5">
+        <h3 className="text-lg md:text-xl font-semibold text-cyan-400 mb-6 text-center uppercase tracking-wide drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]">
+          Our PSU Clients
+        </h3>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto list-none">
+          {[
+            "Department of Collegiate Education, Government of Karnataka",
+            "Department of Telecommunications",
+            "Department of Tourism, Karnataka",
+            "CA.gov",
+            "K-tech",
+            "Advanced Centre for Integrated Water Resources Management, Government of Karnataka",
+            "Department of Youth Empowerment and Sports, Government of Karnataka",
+            "Karnataka School Examination and Assessment Board",
+            "Karnataka State Electronics Development Corporation Limited (KEONICS)",
+            "Karnataka State Audit And Accounts Department, Government of Karnataka",
+          ].map((name, idx) => (
+            <li
+              key={idx}
+              className="group flex items-center gap-4 py-3 pl-5 pr-4 bg-white/5 rounded-r-lg border-l-4 border-cyan-400/80 hover:border-cyan-400 hover:bg-white/8 transition-all"
+            >
+              <span className="shrink-0 w-7 h-7 rounded-full bg-cyan-400/20 flex items-center justify-center text-cyan-400 text-xs font-bold">
+                {idx + 1}
+              </span>
+              <span className="text-gray-300 text-sm">{name}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Awards (Reused) */}

@@ -151,18 +151,28 @@ export default function Services() {
       title: "Automated Auditing System for Public Sector",
       desc: "Streamlined compliance and audit processes with AI-powered analysis",
       project: "KSAAD Project",
+      caseStudyPath: "/case-study/ksaad",
     },
     {
       image: "/keonics-project.png",
       title: "AI-Driven Training Management & Exam Platform",
       desc: "Intelligent learning paths and automated assessment systems",
       project: "KEONICS Project",
+      caseStudyPath: "/case-study/keonics",
     },
     {
       image: "/ksaad-project.png",
-      title: "Startup Synergy Innovation & Problem Resolution Portal",
-      desc: "Advanced threat detection and automated response systems",
-      project: "Enterprise Solution",
+      title: "Startup Synergy: Innovation & Problem Resolution Portal",
+      desc: "AI-powered startup hub enabling collaboration, innovation, and growth across Karnataka's ecosystem.",
+      project: "KITS",
+      caseStudyPath: null as string | null,
+    },
+    {
+      image: "/bda-grievance-portal.png",
+      title: "Big Data Analytics & Grievance Management Portal",
+      desc: "Web-based portal for SOP-based grievance handling with role-based workflows, SLA tracking, and audit trails.",
+      project: "BDA Project",
+      caseStudyPath: "/case-study/bda",
     },
   ];
 
@@ -264,11 +274,11 @@ export default function Services() {
       </section>
 
       {/* Managed IT & AI Transformation */}
-      <section ref={managedRef} className="container mx-auto px-4 md:px-6 py-24 border-t border-white/5">
-        <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-4 ${managedVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
+      <section ref={managedRef} className="container mx-auto px-4 md:px-6 py-10 md:py-24 border-t border-white/5">
+        <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-2 md:mb-4 ${managedVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
           Managed IT & AI Transformation
         </h2>
-        <p className={`text-gray-400 text-center mb-16 max-w-2xl mx-auto ${managedVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
+        <p className={`text-gray-400 text-center mb-8 md:mb-16 max-w-2xl mx-auto ${managedVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
           We enable organizations to operate faster, smarter, safer — powered by automation and intelligence.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -296,8 +306,8 @@ export default function Services() {
       
 
       {/* Our Expertise Across Industries */}
-      <section ref={industriesRef} className="container mx-auto px-4 md:px-6 pt-24 pb-10 md:py-24 border-t border-white/5">
-        <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-10 md:mb-16 ${industriesVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
+      <section ref={industriesRef} className="container mx-auto px-4 md:px-6 pt-8 pb-8 md:py-24 border-t border-white/5">
+        <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-6 md:mb-16 ${industriesVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
           Our Expertise Across Industries
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
@@ -328,40 +338,57 @@ export default function Services() {
         <p className={`text-gray-400 text-center mb-16 max-w-2xl mx-auto ${useCasesVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
           Real world impact we create today
         </p>
-        <div className="grid md:grid-cols-3 gap-8">
-          {aiUseCases.map((useCase, idx) => (
-            <div
-              key={idx}
-              className={`bg-gradient-to-br from-white/5 to-transparent border border-white/10 border-teal-400/20 shadow-[0_0_0_1px_rgba(20,184,166,0.1),0_0_20px_rgba(20,184,166,0.06)] overflow-hidden group hover:border-teal-400/40 hover:shadow-[0_0_0_1px_rgba(20,184,166,0.2),0_0_24px_rgba(20,184,166,0.12)] transition-all duration-500 ${
-                useCasesVisible ? "usecase-card-visible" : "usecase-card-hidden"
-              }`}
-              style={useCasesVisible ? { animationDelay: `${idx * 0.15}s` } : {}}
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={useCase.image}
-                  alt={useCase.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {aiUseCases.map((useCase, idx) => {
+            const cardClass = `bg-gradient-to-br from-white/5 to-transparent border border-white/10 border-teal-400/20 shadow-[0_0_0_1px_rgba(20,184,166,0.1),0_0_20px_rgba(20,184,166,0.06)] overflow-hidden group hover:border-teal-400/40 hover:shadow-[0_0_0_1px_rgba(20,184,166,0.2),0_0_24px_rgba(20,184,166,0.12)] transition-all duration-500 ${
+              useCasesVisible ? "usecase-card-visible" : "usecase-card-hidden"
+            } ${useCase.caseStudyPath ? "cursor-pointer" : ""}`;
+            const content = (
+              <>
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={useCase.image}
+                    alt={useCase.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-teal-300 transition-colors">
+                    {useCase.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                    {useCase.desc}
+                  </p>
+                  <span className="text-teal-400 text-sm font-medium">
+                    {useCase.project}
+                  </span>
+                </div>
+              </>
+            );
+            return useCase.caseStudyPath ? (
+              <Link
+                key={idx}
+                to={useCase.caseStudyPath}
+                className={cardClass}
+                style={useCasesVisible ? { animationDelay: `${idx * 0.15}s` } : {}}
+              >
+                {content}
+              </Link>
+            ) : (
+              <div
+                key={idx}
+                className={cardClass}
+                style={useCasesVisible ? { animationDelay: `${idx * 0.15}s` } : {}}
+              >
+                {content}
               </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-teal-300 transition-colors">
-                  {useCase.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  {useCase.desc}
-                </p>
-                <span className="text-teal-400 text-sm font-medium">
-                  {useCase.project}
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className={`text-center mt-8 md:mt-12 ${useCasesVisible ? "usecase-button-visible" : "usecase-button-hidden"}`}>
-          <button className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white px-8 py-3 font-bold transition-all shadow-lg shadow-teal-600/20 hover:shadow-teal-600/30 hover:scale-105 active:scale-95">
+          <Link to="/portfolio#case-studies" className="inline-block bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white px-8 py-3 font-bold transition-all shadow-lg shadow-teal-600/20 hover:shadow-teal-600/30 hover:scale-105 active:scale-95">
             View Full Case Studies
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -370,22 +397,17 @@ export default function Services() {
         <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-16 ${testimonialsVisible ? "services-section-title-visible" : "services-section-title-hidden"}`}>
           What Our Clients Say
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto justify-items-center">
           {[
             {
-              name: "Sarah Johnson",
-              role: "CTO, KEONICS",
-              quote: "Inventech's AI transformation consulting helped us reduce operational costs by 40% while improving our service quality significantly.",
+              name: "Michael Waso",
+              role: "CEO, Paperless Knowledge, Inc.",
+              quote: "InvenTech has been a trusted partner delivering reliable, innovative technology solutions with strong execution and technical expertise.",
             },
             {
-              name: "Michael Chen",
-              role: "Director, KITS",
-              quote: "Their expertise in government compliance and AI implementation made our digital transformation seamless and secure.",
-            },
-            {
-              name: "Emily Rodriguez",
-              role: "VP Innovation, KSAAD",
-              quote: "Working with Inventech was transformative. Their human + AI approach delivered results beyond our expectations.",
+              name: "Robert Bieniek",
+              role: "CEO, Customized Solutions Inc.",
+              quote: "InvenTech has been a trusted partner for over a decade, delivering scalable infrastructure and application solutions with strong technical expertise and a consistent commitment to client success.",
             },
           ].map((testimonial, idx) => (
             <div
@@ -407,9 +429,9 @@ export default function Services() {
       </section>
 
       {/* CTA Section - Dark Theme */}
-      <section ref={ctaRef} className="container mx-auto px-4 md:px-6 py-16">
+      <section ref={ctaRef} className="container mx-auto px-4 md:px-6 py-8 md:py-16">
         <div 
-          className={`bg-gradient-to-r from-white/5 to-transparent backdrop-blur-xl p-6 md:p-20 text-center relative overflow-hidden border border-white/10 border-teal-400/20 shadow-[0_0_0_1px_rgba(20,184,166,0.15),0_0_24px_rgba(20,184,166,0.08),0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:border-teal-400/40 hover:shadow-[0_0_0_1px_rgba(20,184,166,0.25),0_0_32px_rgba(20,184,166,0.12),0_25px_50px_-12px_rgba(0,0,0,0.3)] transition-all duration-1000 ${
+          className={`bg-gradient-to-r from-white/5 to-transparent backdrop-blur-xl p-5 md:p-20 text-center relative overflow-hidden border border-white/10 border-teal-400/20 shadow-[0_0_0_1px_rgba(20,184,166,0.15),0_0_24px_rgba(20,184,166,0.08),0_25px_50px_-12px_rgba(0,0,0,0.25)] hover:border-teal-400/40 hover:shadow-[0_0_0_1px_rgba(20,184,166,0.25),0_0_32px_rgba(20,184,166,0.12),0_25px_50px_-12px_rgba(0,0,0,0.3)] transition-all duration-1000 ${
             ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
@@ -418,7 +440,7 @@ export default function Services() {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-600/10 blur-[80px] rounded-full -z-10"></div>
           
           <div className="relative z-10">
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-8">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-8">
               Let's automate your business and build intelligent products together.
             </h2>
             <Link to="/contact" className="inline-block bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-400 hover:to-teal-400 text-white px-8 py-3 font-semibold transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/50 hover:scale-105">

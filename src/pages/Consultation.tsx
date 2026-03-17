@@ -170,9 +170,9 @@ export default function Consultation() {
             <Link to="/contact" className="w-full md:w-auto text-center inline-block bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white px-8 py-3 font-bold transition-all shadow-xl shadow-teal-600/20 hover:shadow-teal-600/30">
               Let's Transform Together
             </Link>
-            <button className="w-full md:w-auto bg-transparent border border-teal-400/50 hover:border-teal-400 hover:bg-teal-400/10 text-white px-8 py-3 font-bold transition-all">
+            <Link to="/portfolio" className="w-full md:w-auto text-center inline-block bg-transparent border border-teal-400/50 hover:border-teal-400 hover:bg-teal-400/10 text-white px-8 py-3 font-bold transition-all">
               View Case Studies
-            </button>
+            </Link>
           </div>
         </div>
         <div className="relative">

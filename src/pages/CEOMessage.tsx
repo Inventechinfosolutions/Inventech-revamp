@@ -2,7 +2,7 @@ import {
   Briefcase,
   Cpu,
   Cloud,
-  Terminal,
+  Landmark,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -67,7 +67,7 @@ export default function CEOMessage() {
   }, []);
   const businessUnits = [
     {
-      icon: <Terminal className="w-6 h-6 text-teal-400" />,
+      icon: <Landmark className="w-6 h-6 text-teal-400" />,
       title: "GovTech",
       desc: "Secure, compliant modernization for government and regulated ecosystems—where trust and accountability are non-negotiable.",
     },

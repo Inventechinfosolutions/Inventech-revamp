@@ -93,12 +93,12 @@ export default function Metrics() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 container mx-auto px-6 relative z-10">
-      <div className="text-center relative z-10 mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+    <section ref={sectionRef} className="py-8 md:py-20 container mx-auto px-6 relative z-10">
+      <div className="text-center relative z-10 mb-6 md:mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 md:mb-4">
           Proof Through Metrics
         </h2>
-        <p className="text-cyan-300 mb-16 opacity-90 text-lg">
+        <p className="text-cyan-300 mb-8 md:mb-16 opacity-90 text-lg">
           Measurable impact across digital transformation projects
         </p>
 

@@ -63,9 +63,9 @@ export default function WhyPartner() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 container mx-auto px-6">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+    <section ref={sectionRef} className="py-8 md:py-16 container mx-auto px-6">
+      <div className="text-center mb-6 md:mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-4">
           Why Partner With Us
         </h2>
       </div>

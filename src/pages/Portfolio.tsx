@@ -114,7 +114,7 @@ export default function Portfolio() {
       category: "IEBA",
       desc: "AI-enabled HR automation boosting accuracy, efficiency, and workforce intelligence.",
       stats: ["60% efficiency boost"],
-      image: "/IEBA Workforce Management Hub.png",
+      image: "/ieba-workforce-management-hub-card.png",
       caseStudyPath: null as string | null,
     },
     {
@@ -132,6 +132,7 @@ export default function Portfolio() {
       stats: ["80% Time reduction"],
       image: "/ksaad-project.png",
       caseStudyPath: "/case-study/ksaad",
+      imagePosition: "center 35%",
     },
     {
       title: "Startup Synergy: Innovation & Problem Resolution Portal",
@@ -197,6 +198,7 @@ export default function Portfolio() {
                     src={study.image}
                     alt={study.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 relative z-0"
+                    style={{ objectPosition: (study as { imagePosition?: string }).imagePosition ?? "center center" }}
                   />
                   <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 text-xs font-bold text-cyan-300 border border-cyan-400/30 shadow-lg shadow-cyan-400/20 z-20 group-hover:scale-110 transition-transform">
                     {study.category}

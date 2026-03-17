@@ -10,6 +10,7 @@ const projects = [
     image: "/keonics-project.png",
     tag: "GovTech",
     caseStudyPath: "/case-study/keonics",
+    imagePosition: "center 40%",
   },
   {
     title: "KSAAD Audit & Accounts Dashboard",
@@ -18,13 +19,15 @@ const projects = [
     image: "/ksaad-project.png" ,
     tag: "FinTech",
     caseStudyPath: "/case-study/ksaad",
+    imagePosition: "center 35%",
   },
   {
     title: "IEBA Workforce Management Hub",
     category: "An all-in-one workforce management platform for time tracking, employee management, payroll, and intelligent reporting.",
-    image: "/IEBA Workforce Management Hub.png",
+    image: "/ieba-workforce-management-hub-card.png",
     tag: "Retail",
     caseStudyPath: null,
+    imagePosition: "center center",
   },
    {
     title: "KITS Startup–Government Bridge",
@@ -87,7 +90,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-8 md:py-14 px-6 container mx-auto" id="projects">
+    <section ref={sectionRef} className="py-8 md:py-14 px-6 lg:px-14 container mx-auto overflow-visible" id="projects">
       <div className="text-center mb-6 md:mb-10 animate-fade-in-up">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-2 md:mb-4">
           Our Impactful Projects
@@ -113,13 +116,14 @@ export default function Projects() {
               {/* Animated gradient border on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-sky-500/0 to-teal-500/0 group-hover/card:from-cyan-500/20 group-hover/card:via-sky-500/20 group-hover/card:to-teal-500/20 transition-all duration-500 pointer-events-none z-0"></div>
               
-              <div className="h-72 overflow-hidden bg-white/2 relative group/img z-10">
+              <div className="h-72 overflow-hidden bg-white/5 relative group/img z-10">
                 {/* Glow effect on image */}
                 <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/0 to-transparent group-hover/img:from-cyan-500/10 transition-all duration-500 z-10 pointer-events-none"></div>
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110 relative z-0"
+                  style={{ objectPosition: (project as { imagePosition?: string }).imagePosition ?? "center 35%" }}
                 />
               </div>
               <div className="p-10 flex flex-col flex-1 relative z-10">

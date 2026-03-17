@@ -84,11 +84,6 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="footer-phrase text-white block py-1 pr-2 rounded">
-                    Careers
-                  </Link>
-                </li>
-                <li>
                   <Link to="/culture" className="footer-phrase text-white block py-1 pr-2 rounded">
                     Culture & Events
                   </Link>

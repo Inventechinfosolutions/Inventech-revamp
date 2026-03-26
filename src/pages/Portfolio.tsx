@@ -1,5 +1,6 @@
 import TrustedBy from "../components/TrustedBy";
 import Awards from "../components/Awards";
+import { Award, Star, ThumbsUp, Medal } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -298,7 +299,14 @@ export default function Portfolio() {
       </section>
 
       {/* Awards (Reused) */}
-      <Awards />
+      <Awards
+        items={[
+          { Icon: Medal, text: "ISO Certified" },
+          { Icon: Award, text: "CMMI Certified" },
+          { Icon: ThumbsUp, text: "Top Performer Award" },
+          { Icon: Star, text: "Star Partner Recognition" },
+        ]}
+      />
 
       {/* CTA */}
       <section ref={ctaRef} className="container mx-auto px-6 py-10">

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Check } from "lucide-react";
+import { Check, Award, Star, ThumbsUp, Medal } from "lucide-react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -234,7 +234,14 @@ function HomePage() {
       <WhyPartner />
       <Metrics />
       <CEOMessage />
-      <Awards />
+      <Awards
+        items={[
+          { Icon: Medal, text: "ISO Certified" },
+          { Icon: Award, text: "CMMI Certified" },
+          { Icon: ThumbsUp, text: "Top Performer Award" },
+          { Icon: Star, text: "Star Partner Recognition" },
+        ]}
+      />
       <ContactFormSection />
     </>
   );

@@ -257,6 +257,16 @@ export default function Culture() {
 
   const galleryImages = [
     {
+      url: "/culture-card-4.png",
+      title: "Celebrating Wins, Big and Small",
+      icon: <Trophy className="w-5 h-5 text-amber-600" />,
+    },
+    {
+      url: "/culture-card-6.png",
+      title: "Respect, Transparency, Open-Door Leadership",
+      icon: <Handshake className="w-5 h-5 text-teal-600" />,
+    },
+    {
       url: "/culture-card-1.png",
       title: "Collective Growth Through Teamwork",
       icon: <Code className="w-5 h-5 text-blue-600" />,
@@ -272,19 +282,9 @@ export default function Culture() {
       icon: <Globe className="w-5 h-5 text-sky-600" />,
     },
     {
-      url: "/culture-card-4.png",
-      title: "Celebrating Wins, Big and Small",
-      icon: <Trophy className="w-5 h-5 text-amber-600" />,
-    },
-    {
       url: "/culture-card-5.png",
       title: "Upskilling Culture — Learning Stipend",
       icon: <BookOpen className="w-5 h-5 text-purple-600" />,
-    },
-    {
-      url: "/culture-card-6.png",
-      title: "Respect, Transparency, Open-Door Leadership",
-      icon: <Handshake className="w-5 h-5 text-teal-600" />,
     },
   ];
 

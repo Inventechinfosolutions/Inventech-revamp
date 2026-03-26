@@ -1,7 +1,19 @@
 import { Award, Star, ThumbsUp, Medal } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-export default function Awards() {
+type AwardItem = {
+  Icon: typeof Medal;
+  text: string;
+};
+
+const defaultItems: AwardItem[] = [
+  { Icon: Medal, text: "Government-approved IT Systems Partner" },
+  { Icon: Award, text: "Digital Innovation Recognition" },
+  { Icon: ThumbsUp, text: "ISO Certified" },
+  { Icon: Star, text: "AI Solution Architecture Excellence" },
+];
+
+export default function Awards({ items = defaultItems }: { items?: AwardItem[] }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -26,12 +38,7 @@ export default function Awards() {
       <h2 className="text-3xl font-bold mb-8 md:mb-16">Awards & Recognitions</h2>
 
       <div className="flex flex-wrap justify-center gap-6 md:gap-12">
-        {[
-          { Icon: Medal, text: "Government-approved IT Systems Partner" },
-          { Icon: Award, text: "Digital Innovation Recognition" },
-          { Icon: ThumbsUp, text: "ISO Certified" },
-          { Icon: Star, text: "AI Solution Architecture Excellence" },
-        ].map(({ Icon, text }, i) => (
+        {items.map(({ Icon, text }, i) => (
           <div
             key={i}
             className={`flex flex-col items-center gap-3 md:gap-4 bg-white/5 border border-cyan-400/25 p-5 md:p-8 w-48 hover:bg-white/10 hover:border-cyan-400/50 transition-all duration-700 transform group ${isVisible

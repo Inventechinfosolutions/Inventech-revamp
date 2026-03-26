@@ -135,10 +135,14 @@ export default function Navbar() {
             onMouseLeave={() => setInsightsOpen(false)}
           >
             <button
-              className={`neon-underline hover:text-white transition-all pb-1 flex items-center gap-1 ${isActive("/about") || isActive("/ceo-message") || isActive("/culture")
+              type="button"
+              onClick={() => setInsightsOpen((v) => !v)}
+              className={`neon-underline hover:text-white transition-all pb-1 flex items-center gap-1 bg-transparent border-none cursor-pointer text-inherit font-inherit ${isActive("/about") || isActive("/ceo-message") || isActive("/culture")
                 ? "text-white active"
                 : ""
                 }`}
+              aria-expanded={insightsOpen}
+              aria-haspopup="true"
             >
               Insights
               <ChevronDown className="w-4 h-4" />

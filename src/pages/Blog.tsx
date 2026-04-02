@@ -115,7 +115,7 @@ export default function Blog() {
     ? articles.filter((a) => matchSearch(a, searchQuery))
     : articles;
 
-  // Featured card: Vadiraj Karanam (Blockchain). Grid order: Shiva → Bankey → Sushmitha → Darshini → Manveeth → Prajwal → rest
+  // Featured card: Vadiraj Karanam (Blockchain). Grid order: Shiva → Bankey (Bhakey) → Darshini → Sushmitha → Manveeth → Prajwal → rest
   const vadirajArticle = filteredBySearch.find((a) => a.id === 12);
   const shivaArticle = filteredBySearch.find((a) => a.id === 7);
   const bankeyArticle = filteredBySearch.find((a) => a.id === 8);
@@ -125,7 +125,7 @@ export default function Blog() {
   const prajwalArticle = filteredBySearch.find((a) => a.id === 13);
   const featuredArticle = vadirajArticle ?? filteredBySearch.find((a) => a.id === 7) ?? filteredBySearch[0];
   const restArticles = filteredBySearch.filter((a) => a.id !== 7 && a.id !== 8 && a.id !== 9 && a.id !== 10 && a.id !== 11 && a.id !== 12 && a.id !== 13);
-  const orderedGrid = [shivaArticle, bankeyArticle, sushmithaArticle, darshiniArticle, manveethArticle, prajwalArticle].filter((a): a is NonNullable<typeof a> => a != null);
+  const orderedGrid = [shivaArticle, bankeyArticle, darshiniArticle, sushmithaArticle, manveethArticle, prajwalArticle].filter((a): a is NonNullable<typeof a> => a != null);
   const gridArticles = [...orderedGrid, ...restArticles];
 
   const displayedArticles = gridArticles.slice(0, visibleCount);

@@ -440,7 +440,7 @@ export default function Culture() {
                   {
                     quote: "Inventech brings me new challenges through each project, giving me the opportunity to learn and adapt to both existing and upcoming technologies.",
                     name: "Prajwal U P",
-                    role: "SR. Business Analyst",
+                    role: "Sr. Business Analyst",
                     image: "/Prajwal 2.png",
                   },
                   {

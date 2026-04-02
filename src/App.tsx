@@ -257,11 +257,12 @@ function App() {
           <img
             src="/premium-tech-bg.jpg"
             alt="Premium Tech Background"
-            className="w-full h-full object-cover scale-[1.15] animate-slow-drift opacity-75 mix-blend-screen saturate-[0.9] brightness-[0.95] contrast-125 transition-all duration-1000"
+            className="w-full h-full object-cover scale-[1.15] animate-slow-drift opacity-35 mix-blend-screen saturate-[0.35] brightness-[0.85] contrast-105 transition-all duration-1000"
           />
           {/* Subtle depth and glow overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#020d0f]/60 via-transparent to-[#020d0f]/80 z-[1]"></div>
-          <div className="absolute inset-0 bg-teal-400/5 mix-blend-overlay z-[2]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020d0f]/75 via-[#020d0f]/20 to-[#020d0f]/90 z-[1]"></div>
+          <div className="absolute inset-0 bg-[#020d0f]/35 z-[2]"></div>
+          <div className="absolute inset-0 bg-teal-400/4 mix-blend-overlay z-[3]"></div>
         </div>
 
         <div className="relative z-10 flex flex-col min-h-screen">

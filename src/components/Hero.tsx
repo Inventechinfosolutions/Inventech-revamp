@@ -43,7 +43,7 @@ export default function Hero() {
 
             {/* Buttons: desktop only — shown next to text on md and up */}
             <div className="hidden md:flex flex-wrap gap-4 justify-center md:justify-start">
-              <Link to="/portfolio" className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-cyan-400/50 hover:border-cyan-400 text-white px-8 py-3.5 font-bold transition-all backdrop-blur-md shadow-lg shadow-cyan-400/20 hover:shadow-cyan-400/40 active:scale-95 z-30 hover:scale-105 home-hero-btn">
+              <Link to="/portfolio" className="flex items-center gap-2 ml-2 md:ml-4 bg-white/5 hover:bg-white/10 border border-cyan-400/50 hover:border-cyan-400 text-white px-8 py-3.5 font-bold transition-all backdrop-blur-md shadow-lg shadow-cyan-400/20 hover:shadow-cyan-400/40 active:scale-95 z-30 hover:scale-105 home-hero-btn">
                 Explore Our Work
               </Link>
             </div>
@@ -99,7 +99,7 @@ export default function Hero() {
 
           {/* Mobile only: Explore Our Work button — appears after image (order-3) */}
           <div className="flex justify-center md:hidden order-3">
-            <Link to="/portfolio" className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-cyan-400/50 hover:border-cyan-400 text-white px-8 py-3.5 font-bold transition-all backdrop-blur-md shadow-lg shadow-cyan-400/20 hover:shadow-cyan-400/40 active:scale-95 z-30 hover:scale-105 home-hero-btn">
+            <Link to="/portfolio" className="flex items-center gap-2 ml-2 md:ml-4 bg-white/5 hover:bg-white/10 border border-cyan-400/50 hover:border-cyan-400 text-white px-8 py-3.5 font-bold transition-all backdrop-blur-md shadow-lg shadow-cyan-400/20 hover:shadow-cyan-400/40 active:scale-95 z-30 hover:scale-105 home-hero-btn">
               Explore Our Work
             </Link>
           </div>

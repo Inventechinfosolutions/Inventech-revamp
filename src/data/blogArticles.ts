@@ -17,40 +17,40 @@ export interface BlogArticleType {
 }
 
 export const blogArticles: BlogArticleType[] = [
-  {
-    id: 0,
-    title: "The AI-First Enterprise: A Transformation Roadmap for CTOs",
-    category: "AI Strategy",
-    date: "Oct 12, 2026",
-    readTime: "8 min read",
-    author: "Dr. Sarah Chen",
-    excerpt:
-      "Explore the strategic framework that leading CTOs use to implement AI-driven transformation across enterprise systems.",
-    image: "/keonics-project.png",
-    body: [
-      "Enterprise technology is at an inflection point. Organizations that embrace an AI-first mindset are not only optimizing existing processes but reimagining how work gets done. This article outlines a practical roadmap for CTOs ready to lead that transformation.",
-      "The first phase centers on foundation: data quality, governance, and secure infrastructure. Without clean, accessible data and a culture of responsible AI, advanced use cases will stall. Many early adopters report that investing 40% of their AI budget in data and governance pays dividends across every subsequent initiative.",
-      "The second phase is about scaling pilots into production. Here, platform engineering and MLOps practices become critical. Teams that standardize model deployment, monitoring, and retraining see faster time-to-value and fewer costly rollbacks.",
-      "The final phase is continuous evolution. AI-first enterprises treat models as living assets—regularly updated, audited, and aligned with business outcomes. CTOs who build this discipline into their operating model position their organizations for long-term competitive advantage.",
-    ],
-  },
-  {
-    id: 1,
-    title: "How Generative AI Will Transform Enterprise IT in 2026",
-    category: "Future Tech",
-    date: "Oct 19, 2026",
-    readTime: "5 min read",
-    author: "Marcus Johnson",
-    excerpt:
-      "Discover the emerging patterns and practical applications that are reshaping how teams approach technology infrastructure.",
-    image: "/KITS Startup–Government Bridge.png",
-    body: [
-      "Generative AI is moving from experimentation to core infrastructure. In 2026, we're seeing a clear shift: enterprises are no longer asking whether to adopt GenAI but how to do it safely and at scale.",
-      "Code generation, documentation, and incident response are among the highest-impact use cases. Development teams report significant gains in velocity when GenAI is embedded into IDEs and CI/CD pipelines—with the right guardrails. Security and compliance teams are using generative models to draft policies, analyze logs, and simulate threat scenarios.",
-      "The key differentiator is governance. Organizations that define clear boundaries—what data models can access, how outputs are validated, and when human review is required—are scaling faster and with fewer incidents. Those that treat GenAI as a wildcard are facing integration debt and reputational risk.",
-      "Looking ahead, expect tighter integration between GenAI and enterprise platforms: ERP, CRM, and custom applications will offer native copilots. The role of IT will evolve from implementing point solutions to curating and governing an AI-augmented ecosystem.",
-    ],
-  },
+  // {
+  //   id: 0,
+  //   title: "The AI-First Enterprise: A Transformation Roadmap for CTOs",
+  //   category: "AI Strategy",
+  //   date: "Oct 12, 2026",
+  //   readTime: "8 min read",
+  //   author: "Dr. Sarah Chen",
+  //   excerpt:
+  //     "Explore the strategic framework that leading CTOs use to implement AI-driven transformation across enterprise systems.",
+  //   image: "/keonics-project.png",
+  //   body: [
+  //     "Enterprise technology is at an inflection point. Organizations that embrace an AI-first mindset are not only optimizing existing processes but reimagining how work gets done. This article outlines a practical roadmap for CTOs ready to lead that transformation.",
+  //     "The first phase centers on foundation: data quality, governance, and secure infrastructure. Without clean, accessible data and a culture of responsible AI, advanced use cases will stall. Many early adopters report that investing 40% of their AI budget in data and governance pays dividends across every subsequent initiative.",
+  //     "The second phase is about scaling pilots into production. Here, platform engineering and MLOps practices become critical. Teams that standardize model deployment, monitoring, and retraining see faster time-to-value and fewer costly rollbacks.",
+  //     "The final phase is continuous evolution. AI-first enterprises treat models as living assets—regularly updated, audited, and aligned with business outcomes. CTOs who build this discipline into their operating model position their organizations for long-term competitive advantage.",
+  //   ],
+  // },
+  // {
+  //   id: 1,
+  //   title: "How Generative AI Will Transform Enterprise IT in 2026",
+  //   category: "Future Tech",
+  //   date: "Oct 19, 2026",
+  //   readTime: "5 min read",
+  //   author: "Marcus Johnson",
+  //   excerpt:
+  //     "Discover the emerging patterns and practical applications that are reshaping how teams approach technology infrastructure.",
+  //   image: "/KITS Startup–Government Bridge.png",
+  //   body: [
+  //     "Generative AI is moving from experimentation to core infrastructure. In 2026, we're seeing a clear shift: enterprises are no longer asking whether to adopt GenAI but how to do it safely and at scale.",
+  //     "Code generation, documentation, and incident response are among the highest-impact use cases. Development teams report significant gains in velocity when GenAI is embedded into IDEs and CI/CD pipelines—with the right guardrails. Security and compliance teams are using generative models to draft policies, analyze logs, and simulate threat scenarios.",
+  //     "The key differentiator is governance. Organizations that define clear boundaries—what data models can access, how outputs are validated, and when human review is required—are scaling faster and with fewer incidents. Those that treat GenAI as a wildcard are facing integration debt and reputational risk.",
+  //     "Looking ahead, expect tighter integration between GenAI and enterprise platforms: ERP, CRM, and custom applications will offer native copilots. The role of IT will evolve from implementing point solutions to curating and governing an AI-augmented ecosystem.",
+  //   ],
+  // },
   // {
   //   id: 2,
   //   title:
@@ -69,41 +69,41 @@ export const blogArticles: BlogArticleType[] = [
   //     "The end state is a platform that looks intelligent from the outside: self-healing, adaptive, and capable of handling both legacy and modern workloads. Getting there requires a clear roadmap, executive sponsorship, and a team that blends domain expertise with modern engineering practices.",
   //   ],
   // },
-  {
-    id: 3,
-    title:
-      "Zero-Trust Engineering: A Practical Playbook for Security-First Development",
-    category: "Security",
-    date: "Oct 25, 2026",
-    readTime: "6 min read",
-    author: "David Park",
-    excerpt:
-      "Implementation strategies for building security into every layer of your development lifecycle.",
-    image: "/ksaad-project.png",
-    body: [
-      "Zero trust is no longer a buzzword—it's the baseline for organizations handling sensitive data or operating in regulated industries. The challenge is turning principles into practice without slowing delivery.",
-      "Identity and access sit at the center. Every request—whether from a user, service, or pipeline—should be authenticated and authorized with minimal privilege. Implement strong identity for both humans and machines: MFA, short-lived credentials, and service accounts with scoped permissions.",
-      "Network segmentation and encryption follow. Assume the network is hostile: encrypt in transit and at rest, and segment so that a compromise in one zone doesn't automatically expose others. Dev and staging environments should mirror production security postures where possible.",
-      "Finally, embed security into the SDLC. Shift-left with SAST, DAST, dependency scanning, and secret detection. Use policy-as-code to enforce standards in CI/CD. Security teams that partner with engineering to automate checks and fix pipelines see faster releases and fewer vulnerabilities.",
-    ],
-  },
-  {
-    id: 4,
-    title: "Cloud Cost Optimization: 9 Proven Tactics CIOs Rely On",
-    category: "Cloud",
-    date: "Oct 30, 2026",
-    readTime: "5 min read",
-    author: "Aisha G",
-    excerpt:
-      "Leveraging strategies to reduce cloud spend by up to 30% without sacrificing performance.",
-    image: "/IEBA Workforce Management Hub.png",
-    body: [
-      "Cloud bills can spiral quickly when usage is ungoverned. The good news: most organizations can achieve 20–30% savings with a combination of rightsizing, commitment discounts, and operational discipline.",
-      "Rightsizing is the first lever. Many workloads run on over-provisioned instances. Use utilization metrics and recommendations from your cloud provider to downsize or switch to burstable instances where appropriate. Storage tiers—moving cold data to cheaper classes—often yield quick wins.",
-      "Commitment-based discounts (reserved instances, savings plans) can cut compute costs significantly for predictable workloads. The key is to align commitment terms with actual usage patterns and to centralize purchasing so the organization can leverage volume.",
-      "Operational tactics round out the playbook: auto-scaling to match demand, shutting down non-production outside business hours, tagging for accountability, and regular reviews with business owners. CIOs who make cost visibility and accountability part of the culture see sustained savings year over year.",
-    ],
-  },
+  // {
+  //   id: 3,
+  //   title:
+  //     "Zero-Trust Engineering: A Practical Playbook for Security-First Development",
+  //   category: "Security",
+  //   date: "Oct 25, 2026",
+  //   readTime: "6 min read",
+  //   author: "David Park",
+  //   excerpt:
+  //     "Implementation strategies for building security into every layer of your development lifecycle.",
+  //   image: "/ksaad-project.png",
+  //   body: [
+  //     "Zero trust is no longer a buzzword—it's the baseline for organizations handling sensitive data or operating in regulated industries. The challenge is turning principles into practice without slowing delivery.",
+  //     "Identity and access sit at the center. Every request—whether from a user, service, or pipeline—should be authenticated and authorized with minimal privilege. Implement strong identity for both humans and machines: MFA, short-lived credentials, and service accounts with scoped permissions.",
+  //     "Network segmentation and encryption follow. Assume the network is hostile: encrypt in transit and at rest, and segment so that a compromise in one zone doesn't automatically expose others. Dev and staging environments should mirror production security postures where possible.",
+  //     "Finally, embed security into the SDLC. Shift-left with SAST, DAST, dependency scanning, and secret detection. Use policy-as-code to enforce standards in CI/CD. Security teams that partner with engineering to automate checks and fix pipelines see faster releases and fewer vulnerabilities.",
+  //   ],
+  // },
+  // {
+  //   id: 4,
+  //   title: "Cloud Cost Optimization: 9 Proven Tactics CIOs Rely On",
+  //   category: "Cloud",
+  //   date: "Oct 30, 2026",
+  //   readTime: "5 min read",
+  //   author: "Aisha G",
+  //   excerpt:
+  //     "Leveraging strategies to reduce cloud spend by up to 30% without sacrificing performance.",
+  //   image: "/IEBA Workforce Management Hub.png",
+  //   body: [
+  //     "Cloud bills can spiral quickly when usage is ungoverned. The good news: most organizations can achieve 20–30% savings with a combination of rightsizing, commitment discounts, and operational discipline.",
+  //     "Rightsizing is the first lever. Many workloads run on over-provisioned instances. Use utilization metrics and recommendations from your cloud provider to downsize or switch to burstable instances where appropriate. Storage tiers—moving cold data to cheaper classes—often yield quick wins.",
+  //     "Commitment-based discounts (reserved instances, savings plans) can cut compute costs significantly for predictable workloads. The key is to align commitment terms with actual usage patterns and to centralize purchasing so the organization can leverage volume.",
+  //     "Operational tactics round out the playbook: auto-scaling to match demand, shutting down non-production outside business hours, tagging for accountability, and regular reviews with business owners. CIOs who make cost visibility and accountability part of the culture see sustained savings year over year.",
+  //   ],
+  // },
   // {
   //   id: 5,
   //   title: "Future of Work: AI-Assisted Engineering Teams & New Skill Models",
@@ -203,6 +203,7 @@ export const blogArticles: BlogArticleType[] = [
     date: "Nov 18, 2026",
     readTime: "12 min read",
     author: "Darshini G B",
+    authorRole: "Sr. Full Stack Developer",
     authorImage: "/darshini-gb-blog.png",
     excerpt: "As digital transformation accelerates, web applications are evolving into intelligent, real-time systems. Real-Time AI analyzes live data streams and delivers personalized experiences across React, Angular, and Vue.",
     image: "/realtime-ai-frameworks-card.png",
@@ -225,7 +226,7 @@ export const blogArticles: BlogArticleType[] = [
     date: "Mar 3, 2026",
     readTime: "10 min read",
     author: "Sushmitha CR",
-    authorRole: "Full Stack Developer",
+    authorRole: "Sr. Full Stack Developer",
     authorImage: "/sushmitha-cr-blog.png",
     excerpt: "Powering the Next Generation of Intelligent Digital Platforms. AI-powered REST and GraphQL APIs embed intelligence into APIs, allowing applications to consume AI capabilities in a standardized and scalable manner.",
     image: "/ai-rest-graphql-apis-card.png",
@@ -251,7 +252,7 @@ export const blogArticles: BlogArticleType[] = [
     date: "Nov 20, 2026",
     readTime: "11 min read",
     author: "Manveeth S K",
-    authorRole: "Jr Developer",
+    authorRole: "Sr. Full Stack Developer",
     authorImage: "/ai-ui-author-blog.png",
     excerpt: "Modern users expect interfaces that understand, adapt, and respond intelligently. AI-powered UIs combine machine learning, behavioral data, and frameworks like React to create smarter, more responsive applications.",
     image: "/ai-smarter-ui-card.png",
@@ -273,7 +274,7 @@ export const blogArticles: BlogArticleType[] = [
     date: "Mar 10, 2026",
     readTime: "14 min read",
     author: "Prajwal",
-    authorRole: "SR. Business Analyst",
+    authorRole: "Sr. Business Analyst",
     authorImage: "/Prajwal 2.png",
     excerpt:
       "AI-Driven Business Analysis in Government refers to the application of Artificial Intelligence techniques to understand, design, evaluate, and optimize public sector policies, processes, and digital systems.",

@@ -22,6 +22,13 @@ const projects = [
     imagePosition: "center 35%",
   },
   {
+    title: "BDA - Grievance Management Portal",
+    category: "Web-based portal for SOP-based grievance handling with role-based workflows, SLA tracking, and audit trails.",
+    image: "/bda-grievance-portal.png",
+    tag: "GovTech",
+    caseStudyPath: "/case-study/bda",
+  },
+  {
     title: "IEBA Workforce Management Hub",
     category: "An all-in-one workforce management platform for time tracking, employee management, payroll, and intelligent reporting.",
     image: "/ieba-workforce-management-hub-card.png",
@@ -29,19 +36,12 @@ const projects = [
     caseStudyPath: null,
     imagePosition: "center center",
   },
-   {
+  {
     title: "KITS Startup–Government Bridge",
     category: "An AI-powered platform enabling governments to discover solutions, collaborate with industry, and address sector-specific challenges faster and more effectively.",
     image: "/KITS Startup–Government Bridge.png",
     tag: "GovTech",
     caseStudyPath: null,
-  },
-  {
-    title: "BDA - Grievance Management Portal",
-    category: "Web-based portal for SOP-based grievance handling with role-based workflows, SLA tracking, and audit trails.",
-    image: "/bda-grievance-portal.png",
-    tag: "GovTech",
-    caseStudyPath: "/case-study/bda",
   },
 ];
 

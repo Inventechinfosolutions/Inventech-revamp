@@ -28,7 +28,7 @@ export default function Footer() {
                 <img
                   src="/inventech-logo.png"
                   alt="InvenTech"
-                  className="h-12 w-auto brightness-150 object-contain"
+                  className="h-12 w-auto object-contain"
                 />
               </Link>
               <p className="footer-phrase text-white leading-relaxed mb-6 py-1 pr-2 rounded cursor-default max-w-[280px]">

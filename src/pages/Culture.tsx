@@ -514,7 +514,7 @@ export default function Culture() {
                       className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-2 border-cyan-400/30 shadow-lg shadow-cyan-400/10"
                     />
                     <h3 className="text-white font-bold text-xl mb-1 group-hover:text-cyan-400 transition-colors">{testimonial.name}</h3>
-                    <p className="text-cyan-400 text-xs font-semibold tracking-wider uppercase mb-4">{testimonial.role}</p>
+                    <p className="text-cyan-400 text-xs font-semibold tracking-wider mb-4">{testimonial.role}</p>
                     <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
                       {testimonial.quote}
                     </p>

@@ -73,19 +73,22 @@ export default function CEOMessage() {
               </Link>
             </div>
           </div>
-          <div className={`relative ${isVisible ? "ceo-image-visible" : "ceo-image-hidden"}`}>
-            <div className="aspect-square max-w-sm mx-auto overflow-hidden border border-cyan-400/20 bg-white/5 shadow-2xl relative group ceo-image-container home-ceo-image">
+          <div className={`relative flex justify-center md:justify-end ${isVisible ? "ceo-image-visible" : "ceo-image-hidden"}`}>
+            <div className="relative w-full max-w-[400px] aspect-[3/4] overflow-hidden border border-cyan-400/20 bg-navy-900/50 shadow-2xl group ceo-image-container home-ceo-image">
               {/* Enhanced gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent z-10 pointer-events-none"></div>
               {/* Glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-transparent group-hover:from-cyan-500/20 transition-all duration-500 z-10 pointer-events-none"></div>
               <img
                 src="/ceo-new.png"
-                alt="CEO"
-                className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 relative z-0"
-                style={{ filter: "brightness(1.1) contrast(1.05) saturate(1.1)" }}
+                alt="Kempe Gowda, Founder and CEO"
+                className="absolute inset-0 z-0 h-full w-full object-cover origin-center transition-transform duration-700 group-hover:scale-110"
+                style={{
+                  filter: "brightness(1.1) contrast(1.05) saturate(1.1)",
+                  objectPosition: "center 28%",
+                }}
               />
-              <div className="absolute bottom-6 left-6 z-20">
+              <div className="absolute bottom-6 left-6 right-6 z-20 text-left">
                 <div className="text-white font-bold text-xl mb-1 group-hover:text-cyan-300 transition-colors">Kempe Gowda</div>
                 <div className="text-cyan-400 text-sm group-hover:text-cyan-300 transition-colors">Founder & CEO</div>
               </div>

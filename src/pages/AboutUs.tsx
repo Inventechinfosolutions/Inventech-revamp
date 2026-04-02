@@ -371,10 +371,10 @@ export default function AboutUs() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Settings, title: "AI-Infused Development", desc: "Empowering systems with predictive intelligence and automation.", color: "from-cyan-600 to-cyan-700" },
+              { icon: Settings, title: "AI-Infused Development", desc: "Empowering systems with predictive intelligence and automation.", color: "from-teal-600 to-teal-700" },
               { icon: Building2, title: "Proven Industry Expertise", desc: "Decades of experience across GovTech, Healthcare, and Enterprise sectors.", color: "from-teal-600 to-teal-700" },
-              { icon: Lightbulb, title: "Human-Centric Design", desc: "Designing intuitive experiences that bridge tech and usability.", color: "from-cyan-700 to-teal-700" },
-              { icon: Rocket, title: "Trusted Delivery", desc: "Precision, transparency, and measurable business impact.", color: "from-teal-700 to-cyan-800" },
+              { icon: Lightbulb, title: "Human-Centric Design", desc: "Designing intuitive experiences that bridge tech and usability.", color: "from-teal-600 to-teal-700" },
+              { icon: Rocket, title: "Trusted Delivery", desc: "Precision, transparency, and measurable business impact.", color: "from-teal-600 to-teal-700" },
             ].map((item, i) => (
               <div
                 key={i}

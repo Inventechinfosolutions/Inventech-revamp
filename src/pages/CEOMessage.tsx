@@ -126,16 +126,18 @@ export default function CEOMessage() {
             growth."
           </p>
         </div>
-        <div className={`order-2 md:order-2 relative ${heroVisible ? "ceo-hero-image-visible" : "ceo-hero-image-hidden"}`}>
-          <div className="aspect-square max-w-md mx-auto overflow-hidden border border-white/10 bg-white/5 shadow-2xl relative group">
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent opacity-60 z-10"></div>
+        <div className={`order-2 md:order-2 relative flex justify-center ${heroVisible ? "ceo-hero-image-visible" : "ceo-hero-image-hidden"}`}>
+          <div className="relative w-full max-w-[460px] aspect-[3/4] overflow-hidden border border-white/10 bg-navy-900/50 shadow-2xl group">
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent opacity-60 z-10 pointer-events-none"></div>
             <img
               src="/ceo-new.png"
-              alt="CEO Arjun Mehta"
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-              style={{ filter: 'brightness(1.1) contrast(1.1) saturate(1.2)' }}
+              alt="Kempe Gowda, Founder and CEO"
+              className="absolute inset-0 z-0 h-full w-full object-cover origin-center transition-transform duration-700 group-hover:scale-110"
+              style={{
+                filter: "brightness(1.1) contrast(1.1) saturate(1.2)",
+                objectPosition: "center 28%",
+              }}
             />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border-[20px] border-teal-500/10 pointer-events-none"></div>
             {/* Animated gradient border on hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-teal-500/0 via-cyan-500/0 to-teal-500/0 group-hover:from-teal-500/20 group-hover:via-cyan-500/20 group-hover:to-teal-500/20 transition-all duration-500 pointer-events-none z-20"></div>
           </div>

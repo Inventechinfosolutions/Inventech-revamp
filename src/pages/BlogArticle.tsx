@@ -41,11 +41,13 @@ export default function BlogArticle() {
             <img
               src={article.image}
               alt=""
-              className="w-full h-full object-cover object-center"
+              className={`w-full h-full ${
+                article.id === 14
+                  ? "object-contain object-center bg-navy-900/80 p-2"
+                  : "object-cover object-center"
+              }`}
             />
-            <div className="absolute top-4 left-4 bg-navy-900/90 backdrop-blur-md px-3 py-1.5 text-[10px] font-bold text-cyan-400 uppercase tracking-widest border border-cyan-400/30" style={{ borderRadius: 0 }}>
-              {article.category}
-            </div>
+            {/* Category label removed */}
           </div>
 
           {/* Title and author on solid background – not over image */}
@@ -61,7 +63,7 @@ export default function BlogArticle() {
                     alt={article.author}
                     width={56}
                     height={56}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-top"
                     loading="eager"
                     decoding="async"
                   />

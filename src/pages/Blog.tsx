@@ -248,11 +248,13 @@ export default function Blog() {
               <img
                 src={featuredArticle.image}
                 alt={featuredArticle.title}
-                className="w-full h-full object-cover transition-transform duration-700 opacity-100"
+                className={`w-full h-full transition-transform duration-700 opacity-100 ${
+                  featuredArticle.id === 14
+                    ? "object-contain object-center bg-navy-900/80 p-2"
+                    : "object-cover"
+                }`}
               />
-              <div className="absolute top-4 left-4 bg-navy-900/80 backdrop-blur-md px-3 py-1 text-[10px] font-bold text-cyan-400 uppercase tracking-widest border border-cyan-400/20">
-                {featuredArticle.category}
-              </div>
+              {/* Category label removed */}
             </div>
             <div className="p-8 pl-10 pr-10 relative z-10 flex flex-col flex-grow bg-gradient-to-r from-cyan-500/25 via-sky-500/20 to-teal-500/25 border-t border-cyan-400/20">
               <h2 className="text-2xl md:text-3xl font-bold text-cyan-400 mb-3 leading-tight line-clamp-2 break-words">
@@ -271,7 +273,7 @@ export default function Blog() {
                       alt={featuredArticle.author}
                       width={56}
                       height={56}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover object-top"
                       loading="eager"
                       decoding="async"
                     />
@@ -313,6 +315,7 @@ export default function Blog() {
           <div className="grid md:grid-cols-2 gap-6 items-start">
             {displayedArticles.map((article, idx) => {
               const isNewlyLoaded = idx >= prevVisibleCountRef.current && idx < visibleCount;
+              const useContainedImage = article.id === 14;
               return (
                 <article
                   ref={(el) => {
@@ -331,13 +334,13 @@ export default function Blog() {
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                      className={`w-full h-full transition-transform duration-700 opacity-90 group-hover:opacity-100 ${
+                        useContainedImage
+                          ? "object-contain object-center bg-navy-900/80 p-2"
+                          : "object-cover group-hover:scale-110"
+                      }`}
                     />
-                    {article.id === 7 && (
-                      <div className="absolute top-4 left-4 bg-navy-900/80 backdrop-blur-md px-3 py-1 text-[10px] font-bold text-cyan-400 uppercase tracking-widest border border-cyan-400/20">
-                        {article.category}
-                      </div>
-                    )}
+                    {/* Category label removed */}
                   </div>
                   <div className="p-8 relative z-10 flex flex-col flex-grow">
                     <h3 className="text-xl font-bold text-white mb-3 leading-tight group-hover:text-cyan-400 transition-colors line-clamp-2">
@@ -356,7 +359,7 @@ export default function Blog() {
                             alt={article.author}
                             width={48}
                             height={48}
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-cover object-top"
                           />
                         </div>
                         <div className="flex flex-col justify-center min-w-0">

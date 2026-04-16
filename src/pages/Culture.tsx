@@ -476,7 +476,7 @@ export default function Culture() {
                   {
                     quote: "Working at Inventech Info Solutions has strengthened my technical and problem-solving skills through collaboration and continuous learning across diverse tech stacks.",
                     name: "Anil Kishore D R",
-                    role: "Software Developer",
+                    role: "Full Stack Developer",
                     image: "/Anil Kishore.png",
                   },
                   {
@@ -511,7 +511,7 @@ export default function Culture() {
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-2 border-cyan-400/30 shadow-lg shadow-cyan-400/10"
+                      className="w-24 h-24 rounded-full mx-auto mb-6 object-cover object-[center_15%] border-2 border-cyan-400/30 shadow-lg shadow-cyan-400/10"
                     />
                     <h3 className="text-white font-bold text-xl mb-1 group-hover:text-cyan-400 transition-colors">{testimonial.name}</h3>
                     <p className="text-cyan-400 text-xs font-semibold tracking-wider mb-4">{testimonial.role}</p>

@@ -54,7 +54,7 @@ export default function Navbar() {
           <img
             src="/inventech-logo.png"
             alt="InvenTech"
-            className="h-12 w-auto object-contain"
+            className="h-12 w-auto object-contain brightness-125 saturate-150 contrast-110 drop-shadow-[0_0_6px_rgba(14,165,233,0.35)]"
           />
         </Link>
 

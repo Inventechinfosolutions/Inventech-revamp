@@ -28,10 +28,10 @@ export default function Footer() {
                 <img
                   src="/inventech-logo.png"
                   alt="InvenTech"
-                  className="h-12 w-auto object-contain"
+                  className="h-12 w-auto object-contain brightness-125 saturate-150"
                 />
               </Link>
-              <p className="footer-phrase text-white leading-relaxed mb-6 py-1 pr-2 rounded cursor-default max-w-[280px]">
+              <p className="footer-phrase leading-relaxed mb-6 py-1 pr-2 rounded cursor-default max-w-[280px]">
                 Innovating the future through AI-powered digital solutions.
               </p>
               <div className="flex gap-4">

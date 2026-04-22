@@ -127,6 +127,14 @@ export default function Portfolio() {
       caseStudyPath: "/case-study/bda",
     },
     {
+      title: "BDA - CA Site Allotment Portal",
+      category: "BDA",
+      desc: "Web-based platform for digitised tracking of legacy Civic Amenity (CA) sites and automated workflows for the transparent allotment of new sites.",
+      stats: ["Optimised site lifecycle & transparent allotment"],
+      image: "/moments/cas-site-allotment-portal.png",
+      caseStudyPath: null,
+    },
+    {
       title: "KSAAD Audit & Accounts Dashboard",
       category: "KSAAAD",
       desc: "Designed a secure, AI-enabled audit system that simplifies data management and enhances accuracy.",

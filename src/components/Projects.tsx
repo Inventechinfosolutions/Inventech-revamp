@@ -29,6 +29,13 @@ const projects = [
     caseStudyPath: "/case-study/bda",
   },
   {
+    title: "BDA - CA Site Allotment Portal",
+    category: "Web-based platform for digitised tracking of legacy Civic Amenity (CA) sites and automated workflows for the transparent allotment of new sites.",
+    image: "/moments/cas-site-allotment-portal.png",
+    tag: "GovTech",
+    caseStudyPath: null,
+  },
+  {
     title: "IEBA Workforce Management Hub",
     category: "An all-in-one workforce management platform for time tracking, employee management, payroll, and intelligent reporting.",
     image: "/ieba-workforce-management-hub-card.png",

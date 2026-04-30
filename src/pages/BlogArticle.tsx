@@ -63,7 +63,7 @@ export default function BlogArticle() {
                     alt={article.author}
                     width={56}
                     height={56}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-center"
                     loading="eager"
                     decoding="async"
                   />

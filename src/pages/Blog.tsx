@@ -273,7 +273,7 @@ export default function Blog() {
                       alt={featuredArticle.author}
                       width={56}
                       height={56}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover object-center"
                       loading="eager"
                       decoding="async"
                     />
@@ -359,7 +359,7 @@ export default function Blog() {
                             alt={article.author}
                             width={48}
                             height={48}
-                            className="w-full h-full object-cover object-top"
+                            className="w-full h-full object-cover object-center"
                           />
                         </div>
                         <div className="flex flex-col justify-center min-w-0">

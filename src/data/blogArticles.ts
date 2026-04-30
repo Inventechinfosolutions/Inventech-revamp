@@ -21,7 +21,7 @@ export const blogArticles: BlogArticleType[] = [
   //   id: 0,
   //   title: "The AI-First Enterprise: A Transformation Roadmap for CTOs",
   //   category: "AI Strategy",
-  //   date: "Oct 12, 2026",
+  //   date: "Oct 12, 2025",
   //   readTime: "8 min read",
   //   author: "Dr. Sarah Chen",
   //   excerpt:
@@ -38,7 +38,7 @@ export const blogArticles: BlogArticleType[] = [
   //   id: 1,
   //   title: "How Generative AI Will Transform Enterprise IT in 2026",
   //   category: "Future Tech",
-  //   date: "Oct 19, 2026",
+  //   date: "Oct 19, 2025",
   //   readTime: "5 min read",
   //   author: "Marcus Johnson",
   //   excerpt:
@@ -56,7 +56,7 @@ export const blogArticles: BlogArticleType[] = [
   //   title:
   //     "From Legacy to Intelligent: Re-Architecting Platforms for Smart Automation",
   //   category: "Platform Engineering",
-  //   date: "Oct 22, 2026",
+  //   date: "Oct 22, 2025",
   //   readTime: "7 min read",
   //   author: "Elena Rodriguez",
   //   excerpt:
@@ -74,7 +74,7 @@ export const blogArticles: BlogArticleType[] = [
   //   title:
   //     "Zero-Trust Engineering: A Practical Playbook for Security-First Development",
   //   category: "Security",
-  //   date: "Oct 25, 2026",
+  //   date: "Oct 25, 2025",
   //   readTime: "6 min read",
   //   author: "David Park",
   //   excerpt:
@@ -91,7 +91,7 @@ export const blogArticles: BlogArticleType[] = [
   //   id: 4,
   //   title: "Cloud Cost Optimization: 9 Proven Tactics CIOs Rely On",
   //   category: "Cloud",
-  //   date: "Oct 30, 2026",
+  //   date: "Oct 30, 2025",
   //   readTime: "5 min read",
   //   author: "Aisha G",
   //   excerpt:
@@ -108,7 +108,7 @@ export const blogArticles: BlogArticleType[] = [
   //   id: 5,
   //   title: "Future of Work: AI-Assisted Engineering Teams & New Skill Models",
   //   category: "Workforce",
-  //   date: "Nov 2, 2026",
+  //   date: "Nov 2, 2025",
   //   readTime: "4 min read",
   //   author: "Tom H",
   //   excerpt:
@@ -126,7 +126,7 @@ export const blogArticles: BlogArticleType[] = [
   //   title:
   //     "Data-Driven Decision Making: Building Intelligence into Business Strategy",
   //   category: "Digital Strategy",
-  //   date: "Nov 5, 2026",
+  //   date: "Nov 5, 2025",
   //   readTime: "7 min read",
   //   author: "Michael Chen",
   //   excerpt:
@@ -143,7 +143,7 @@ export const blogArticles: BlogArticleType[] = [
     id: 7,
     title: "GovTech: Transforming Governance Through Technology",
     category: "Government Technology",
-    date: "Nov 10, 2026",
+    date: "Jan 10, 2026",
     readTime: "12 min read",
     author: "Shiva Reddy",
     authorRole: "Sr. Software Engineer",
@@ -174,7 +174,7 @@ export const blogArticles: BlogArticleType[] = [
     id: 8,
     title: "Why UX Design Is the Real Growth Engine Behind Successful Websites and Applications (And How It Directly Impacts Revenue, ROI, and User Loyalty)",
     category: "UX & Design",
-    date: "Nov 15, 2026",
+    date: "Feb 15, 2026",
     readTime: "14 min read",
     author: "Bankey Bihari",
     authorRole: "Sr. UX UI Designer",
@@ -200,7 +200,7 @@ export const blogArticles: BlogArticleType[] = [
     id: 9,
     title: "Real-Time AI Use Cases in React, Angular, and Vue Applications",
     category: "Frontend & React.js",
-    date: "Nov 18, 2026",
+    date: "Mar 18, 2026",
     readTime: "12 min read",
     author: "Darshini G B",
     authorRole: "Sr. Full Stack Developer",
@@ -249,7 +249,7 @@ export const blogArticles: BlogArticleType[] = [
     id: 10,
     title: "Using AI to Build Smarter User Interfaces",
     category: "AI & Frontend",
-    date: "Nov 20, 2026",
+    date: "Feb 20, 2026",
     readTime: "11 min read",
     author: "Manveeth S K",
     authorRole: "Sr. Full Stack Developer",
@@ -299,7 +299,7 @@ export const blogArticles: BlogArticleType[] = [
     id: 12,
     title: "A Practical Introduction to Blockchain for Backend Developers",
     category: "Blockchain & Backend",
-    date: "Mar 4, 2026",
+    date: "Jan 4, 2026",
     readTime: "15 min read",
     author: "Vadiraj Karanam",
     authorRole: "Senior Technology Consultant",

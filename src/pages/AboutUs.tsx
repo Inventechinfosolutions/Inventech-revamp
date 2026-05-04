@@ -316,7 +316,7 @@ export default function AboutUs() {
             { year: "2010", title: "Inception & Early Wins", desc: "Founded in Bangalore with a vision to deliver intelligent IT solutions.", side: "left", position: 0 },
             { year: "2014", title: "Global Expansion", desc: "Expanded into enterprise development and managed services.", side: "right", position: 25 },
             { year: "2018", title: "Platform Revolution", desc: "Opened offices in Hyderabad and the USA.", side: "left", position: 50 },
-            { year: "2022", title: "AI Leadership", desc: "Introduced AI and automation-driven consulting solutions.", side: "right", position: 75 },
+            { year: "2024", title: "AI Leadership", desc: "Introduced AI and automation-driven consulting solutions.", side: "right", position: 75 },
             { year: "Today", title: "Market Leader", desc: "Partnering with global enterprises to build the future with AI.", side: "left", highlight: true, position: 100 }
           ].map((milestone, idx) => {
             const isVisible = timelineItemsVisible.includes(idx);

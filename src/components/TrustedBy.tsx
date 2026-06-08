@@ -2,7 +2,7 @@ export default function TrustedBy() {
   const brands = [
     "Lowe's",
     "Target",
-    "PB",
+    "BP",
     "IBM",
     "ACG Inspection",
     "redBus",

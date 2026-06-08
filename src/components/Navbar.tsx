@@ -87,26 +87,20 @@ export default function Navbar() {
             </button>
 
             {servicesOpen && (
-              <div className="absolute top-full left-0 mt-0 pt-2 w-80 bg-navy-900/95 backdrop-blur-lg border border-cyan-400/30 shadow-xl overflow-hidden py-2 z-50 rounded-none">
+              <div className="absolute top-full left-0 mt-0 pt-2 w-48 bg-navy-900/95 backdrop-blur-lg border border-cyan-400/30 shadow-xl overflow-hidden py-2 z-50 rounded-none">
                 <Link
                   to="/services"
                   onClick={() => setServicesOpen(false)}
-                  className="block px-4 py-3 hover:bg-white/10 transition-colors cursor-pointer border-none"
+                  className="block px-4 py-2 hover:bg-white/10 transition-colors cursor-pointer border-none"
                 >
-                  <div>
-                    <div className="text-white font-semibold">IT Services</div>
-                    <div className="text-gray-400 text-xs">Consulting Services We Provide</div>
-                  </div>
+                  <div className="text-white font-semibold">IT Services</div>
                 </Link>
                 <Link
                   to="/consulting"
                   onClick={() => setServicesOpen(false)}
-                  className="block px-4 py-3 hover:bg-white/10 transition-colors cursor-pointer border-none"
+                  className="block px-4 py-2 hover:bg-white/10 transition-colors cursor-pointer border-none"
                 >
-                  <div>
-                    <div className="text-white font-semibold">IT Consultancy</div>
-                    <div className="text-gray-400 text-xs">Key Offerings & Managed IT</div>
-                  </div>
+                  <div className="text-white font-semibold">IT Consultancy</div>
                 </Link>
               </div>
             )}

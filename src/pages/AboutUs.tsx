@@ -2,6 +2,26 @@ import { Rocket, Rocket as InnovationFirst, Eye as Transparency, Users as Collab
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+
+function TestimonialAvatar({ image, name }: { image: string; name: string }) {
+  const [hasError, setHasError] = useState(false);
+  if (image && !hasError) {
+    return (
+      <img
+        src={image}
+        alt={name}
+        className="w-full h-full object-cover"
+        onError={() => setHasError(true)}
+      />
+    );
+  }
+  return (
+    <span className="text-3xl md:text-4xl font-bold text-cyan-400/80">
+      {name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+    </span>
+  );
+}
+
 export default function AboutUs() {
   const [heroVisible, setHeroVisible] = useState(true);
   const [storyVisible, setStoryVisible] = useState(false);
@@ -13,9 +33,9 @@ export default function AboutUs() {
   const [whyVisible, setWhyVisible] = useState(false);
   const [ceoVisible, setCeoVisible] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const [imageError, setImageError] = useState(false);
   const location = useLocation();
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
 
   const testimonials = [
     {
@@ -43,10 +63,6 @@ export default function AboutUs() {
       image: "/harsha.png",
     },
   ];
-
-  useEffect(() => {
-    setImageError(false);
-  }, [testimonialIndex]);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
@@ -133,6 +149,26 @@ export default function AboutUs() {
     }
   }, [location.hash]);
 
+  // Autoplay functionality for custom infinite slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isTransitionEnabled) {
+        setActiveIndex((prev) => prev + 1);
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isTransitionEnabled]);
+
+  // Hook to handle instant snapping for infinite loop
+  useEffect(() => {
+    if (!isTransitionEnabled) {
+      const raf = requestAnimationFrame(() => {
+        setIsTransitionEnabled(true);
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isTransitionEnabled]);
+
   // Count-up animation for stats: random delay per stat, then animate to target and stop
   const statTargets = [15, 100, 25, 10];
   useEffect(() => {
@@ -162,6 +198,38 @@ export default function AboutUs() {
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
   }, [storyVisible, statsDone]);
+
+  const slides = [
+    testimonials[testimonials.length - 1],
+    ...testimonials,
+    testimonials[0],
+  ];
+
+  const nextSlide = () => {
+    if (!isTransitionEnabled) return;
+    setActiveIndex((prev) => prev + 1);
+  };
+
+  const prevSlide = () => {
+    if (!isTransitionEnabled) return;
+    setActiveIndex((prev) => prev - 1);
+  };
+
+  const handleTransitionEnd = () => {
+    if (activeIndex === testimonials.length + 1) {
+      setIsTransitionEnabled(false);
+      setActiveIndex(1);
+    } else if (activeIndex === 0) {
+      setIsTransitionEnabled(false);
+      setActiveIndex(testimonials.length);
+    }
+  };
+
+  const displayIndex = activeIndex === 0
+    ? testimonials.length - 1
+    : activeIndex === testimonials.length + 1
+      ? 0
+      : activeIndex - 1;
 
   return (
     <div className="pt-24 pb-0 relative z-10" style={{marginTop: '-10px'}}>
@@ -406,7 +474,7 @@ export default function AboutUs() {
           {/* Left Arrow - less offset on tablet */}
           <button
             type="button"
-            onClick={() => setTestimonialIndex((i) => (i + testimonials.length - 1) % testimonials.length)}
+            onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 lg:-translate-x-12 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-white/50 hover:text-white transition-colors z-10"
             aria-label="Previous testimonial"
           >
@@ -418,7 +486,7 @@ export default function AboutUs() {
           {/* Right Arrow */}
           <button
             type="button"
-            onClick={() => setTestimonialIndex((i) => (i + 1) % testimonials.length)}
+            onClick={nextSlide}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 lg:translate-x-12 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-white/50 hover:text-white transition-colors z-10"
             aria-label="Next testimonial"
           >
@@ -428,47 +496,70 @@ export default function AboutUs() {
           </button>
           
           <div className={`bg-white/5 border border-white/10 backdrop-blur-xl p-6 md:p-10 lg:p-16 overflow-hidden ${ceoVisible ? "about-ceo-card-visible" : "about-ceo-card-hidden"}`}>
-          <div className="flex flex-col items-center text-center mb-6 md:mb-8">
-            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border border-cyan-400/50 overflow-hidden mb-4 md:mb-6 shadow-sm flex items-center justify-center bg-white/5">
-              {testimonials[testimonialIndex].image && !imageError ? (
-                <img
-                  src={testimonials[testimonialIndex].image}
-                  alt={testimonials[testimonialIndex].name}
-                  className="w-full h-full object-cover"
-                  onError={() => setImageError(true)}
-                />
-              ) : (
-                <span className="text-3xl md:text-4xl font-bold text-cyan-400/80">
-                  {testimonials[testimonialIndex].name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
-                </span>
-              )}
-            </div>
-            <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4 md:mb-6 max-w-2xl">
-              {testimonials[testimonialIndex].quote}
-            </p>
-            <div>
-              <div className="text-white font-bold text-lg md:text-xl mb-1">{testimonials[testimonialIndex].name}</div>
-              <div className="text-cyan-400 font-semibold">{testimonials[testimonialIndex].designation}</div>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-white/10">
-            {[
-              { icon: InnovationFirst, label: "Innovation First", desc: "Leading with cutting-edge solutions" },
-              { icon: Transparency, label: "Transparency", desc: "Open communication and honest practices" },
-              { icon: Collaboration, label: "Collaboration", desc: "Partnership-driven approach" },
-              { icon: EthicalAI, label: "Ethical AI", desc: "Responsible technology development" },
-            ].map((item, i) => (
-              <div key={i} className="min-w-0 text-center">
-                <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <item.icon className="w-6 h-6 text-cyan-400" />
-                </div>
-                <div className="text-sm text-white font-semibold mb-1">{item.label}</div>
-                <div className="text-xs text-gray-400">{item.desc}</div>
+            {/* Sliding container */}
+            <div className="overflow-hidden w-full mb-6 md:mb-8">
+              <div 
+                className="flex"
+                style={{ 
+                  transform: `translateX(-${activeIndex * 100}%)`,
+                  transition: isTransitionEnabled ? "transform 1000ms ease-in-out" : "none"
+                }}
+                onTransitionEnd={handleTransitionEnd}
+              >
+                {slides.map((testimonial, idx) => (
+                  <div key={idx} className="w-full flex-shrink-0 flex flex-col items-center text-center px-4">
+                    <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border border-cyan-400/50 overflow-hidden mb-4 md:mb-6 shadow-sm flex items-center justify-center bg-white/5">
+                      <TestimonialAvatar image={testimonial.image} name={testimonial.name} />
+                    </div>
+                    <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4 md:mb-6 max-w-2xl">
+                      {testimonial.quote}
+                    </p>
+                    <div>
+                      <div className="text-white font-bold text-lg md:text-xl mb-1">{testimonial.name}</div>
+                      <div className="text-cyan-400 font-semibold">{testimonial.designation}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Custom dots indicators */}
+            <div className="flex justify-center gap-2 mb-8">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    if (isTransitionEnabled) {
+                      setActiveIndex(idx + 1);
+                    }
+                  }}
+                  className={`h-1 rounded-full transition-all duration-300 ${
+                    displayIndex === idx ? "w-6 bg-cyan-400" : "w-2 bg-white/30"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Static Features Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-white/10">
+              {[
+                { icon: InnovationFirst, label: "Innovation First", desc: "Leading with cutting-edge solutions" },
+                { icon: Transparency, label: "Transparency", desc: "Open communication and honest practices" },
+                { icon: Collaboration, label: "Collaboration", desc: "Partnership-driven approach" },
+                { icon: EthicalAI, label: "Ethical AI", desc: "Responsible technology development" },
+              ].map((item, i) => (
+                <div key={i} className="min-w-0 text-center">
+                  <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <item.icon className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <div className="text-sm text-white font-semibold mb-1">{item.label}</div>
+                  <div className="text-xs text-gray-400">{item.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </section>
 
       {/* CTA Section */}

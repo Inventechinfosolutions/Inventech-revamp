@@ -8,9 +8,8 @@ const CATEGORY_BUTTONS = [
   { label: "UX & Design", category: "UX & Design" },
   { label: "Frontend & React.js", category: "Frontend & React.js" },
   { label: "Frontend & AI", category: "AI & Frontend" },
+  { label: "API & AI", category: "API & AI" },
   { label: "Blockchain & Backend", category: "Blockchain & Backend" },
-  { label: "Talent & Workforce Innovation", category: "Talent & Workforce Innovation" },
-  { label: "Business & Digital Strategy", category: "Business & Digital Strategy" },
 ];
 
 const SEARCH_KEYS = ["title", "excerpt", "author", "category"] as const;
@@ -42,6 +41,9 @@ export default function Blog() {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const newsletterRef = useRef<HTMLDivElement>(null);
   const categoryCardRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  // Clear refs object on each render to avoid stale references
+  categoryCardRefs.current = {};
 
   useEffect(() => {
     setHeroVisible(true);
@@ -157,9 +159,31 @@ export default function Blog() {
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory((prev) => (prev === category ? null : category));
-    const cardEl = categoryCardRefs.current[category];
-    if (cardEl) {
-      cardEl.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (selectedCategory === category) {
+      return;
+    }
+
+    // Check if the featured article has this category
+    if (featuredArticle.category === category) {
+      const cardEl = categoryCardRefs.current[category];
+      if (cardEl) {
+        cardEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      return;
+    }
+
+    const indexInGrid = gridArticles.findIndex((a) => a.category === category);
+    if (indexInGrid !== -1) {
+      if (indexInGrid >= visibleCount) {
+        setVisibleCount(indexInGrid + 1);
+      }
+      setTimeout(() => {
+        const cardEl = categoryCardRefs.current[category];
+        if (cardEl) {
+          cardEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
     } else {
       scrollToBlogCards();
     }
